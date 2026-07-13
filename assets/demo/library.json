@@ -1,0 +1,537 @@
+{
+  "_meta": {
+    "kind": "movies",
+    "count": 24,
+    "language": "en",
+    "generatedFor": "App Store screenshots, fake commercial catalog",
+    "schemaVersion": 1
+  },
+  "items": [
+    {
+      "id": "mov_001",
+      "title": "Echo Protocol",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Action",
+        "Spy"
+      ],
+      "rating": 7.6,
+      "runtime": 124,
+      "tagline": "One agent. One mistake. One last chance.",
+      "logline": "A disavowed CIA operative returns to Prague to clear her name and discovers her last mission was the cover for a betrayal that runs all the way back to her recruiter.",
+      "synopsis": "Six months after Prague, the network thinks she's dead. She is not. She is back. And she has the name of the man who sold her out, written on the inside of a matchbook.",
+      "cast": [
+        "Sienna Caldwell",
+        "Marcus Reeve"
+      ],
+      "director": "Adrian Voss",
+      "studio": "Northstar Studios",
+      "posterPath": "mov_001.jpg"
+    },
+    {
+      "id": "mov_006",
+      "title": "Orbital",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Sci-Fi",
+        "Thriller"
+      ],
+      "rating": 7.8,
+      "runtime": 117,
+      "tagline": "Earth is below. Help is not coming.",
+      "logline": "When a debris cascade tears apart the international station, two surviving astronauts must reach an unmanned escape capsule before their oxygen runs out.",
+      "synopsis": "Three hundred kilometers above Earth, the silence is louder than the alarm. Twelve hours of air. One escape capsule. Two people who do not trust each other. The clock starts now.",
+      "cast": [
+        "Aiden Brookes",
+        "Priya Anand"
+      ],
+      "director": "Caleb Rhys",
+      "studio": "Apex Pictures",
+      "posterPath": "mov_006.jpg"
+    },
+    {
+      "id": "mov_017",
+      "title": "The Vacancy",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Horror",
+        "Mystery"
+      ],
+      "rating": 7.1,
+      "runtime": 99,
+      "tagline": "Check in. Don't check the room next door.",
+      "logline": "A travel writer takes the last room at a forgotten roadside motel and realizes the guest in room 8 has been the same person for sixty years.",
+      "synopsis": "She just wanted somewhere off the highway. The motel had one vacancy. The guest in room 8 leaves a note under her door every night. The handwriting matches her grandfather's.",
+      "cast": [
+        "Tess Marbury",
+        "Margaret Heflin"
+      ],
+      "director": "Greer Mountfort",
+      "studio": "Crown Media",
+      "posterPath": "mov_017.jpg"
+    },
+    {
+      "id": "mov_014",
+      "title": "Set the Date",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Romance",
+        "Comedy"
+      ],
+      "rating": 7.3,
+      "runtime": 102,
+      "tagline": "The wedding is in six days. The bride is missing.",
+      "logline": "A perfectionist bride and her commitment-phobic ex-fiancé retrace their broken engagement across a Greek island when her wedding goes off the rails.",
+      "synopsis": "Six days before the wedding, the bride disappears. The best man calls the only person who might know where she went. They have not spoken in two years. They have one weekend in Santorini.",
+      "cast": [
+        "Bryn Calloway",
+        "Oliver Tate"
+      ],
+      "director": "Maya Linder",
+      "studio": "Crown Media",
+      "posterPath": "mov_014.jpg"
+    },
+    {
+      "id": "mov_002",
+      "title": "The Last Convoy",
+      "year": 2023,
+      "country": "US",
+      "genres": [
+        "Action",
+        "Thriller"
+      ],
+      "rating": 7.5,
+      "runtime": 131,
+      "tagline": "Twelve trucks. One road. No surrender.",
+      "logline": "A retired Army logistics officer must lead a humanitarian convoy through 200 miles of warlord territory after the military extraction is cancelled.",
+      "synopsis": "The airlift is gone. The radio is dead. Twelve trucks of food and medicine. Two hundred miles of nothing. One last officer who knows the road. The road does not know him anymore.",
+      "cast": [
+        "Diego Vargas",
+        "Camille Auvray"
+      ],
+      "director": "Sebastian Korr",
+      "studio": "Northstar Studios",
+      "posterPath": "mov_002.jpg"
+    },
+    {
+      "id": "mov_009",
+      "title": "Ascendant",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Sci-Fi",
+        "Adventure"
+      ],
+      "rating": 7.4,
+      "runtime": 148,
+      "tagline": "Earth was a mistake. They're going home.",
+      "logline": "Generations after Earth was abandoned, a young engineer aboard a dying ark ship leads a mutiny to turn the fleet back toward the planet her ancestors fled.",
+      "synopsis": "The fleet has been adrift for nine generations. The captain still believes in the original mission. The engineer believes she has just decoded a message her ancestors should have heard. The vote begins tonight.",
+      "cast": [
+        "Iliana Ross",
+        "Owen Garrick"
+      ],
+      "director": "Tatiana Brevik",
+      "studio": "Apex Pictures",
+      "posterPath": "mov_009.jpg"
+    },
+    {
+      "id": "mov_011",
+      "title": "Cold Harbor",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Crime",
+        "Thriller"
+      ],
+      "rating": 7.7,
+      "runtime": 122,
+      "tagline": "Every town has a secret. This one votes on it.",
+      "logline": "A state detective returns to her Maine hometown after a body turns up in the harbor and realizes everyone she grew up with helped put it there.",
+      "synopsis": "She left at eighteen and never looked back. The phone call brought her home. The body is from the senior class. The whole class is now the town council. Every door is closed.",
+      "cast": [
+        "Vivian Hatch",
+        "Donovan Briggs"
+      ],
+      "director": "Patrick Sloane",
+      "studio": "Crown Media",
+      "posterPath": "mov_011.jpg"
+    },
+    {
+      "id": "mov_015",
+      "title": "Plus Two",
+      "year": 2025,
+      "country": "US",
+      "genres": [
+        "Romance",
+        "Comedy"
+      ],
+      "rating": 7.2,
+      "runtime": 104,
+      "tagline": "Nobody is faking now.",
+      "logline": "A burned-out chef and a Type-A wedding planner pretend to be a couple for two competing family functions held on the same weekend in Maui.",
+      "synopsis": "Her family expects a fiancé by Saturday. His family expects a girlfriend by Sunday. They met yesterday. They have one weekend to convince two weddings that they are very much in love. They are not. Probably.",
+      "cast": [
+        "Daniela Marchetti",
+        "Theo Reinhart"
+      ],
+      "director": "Maya Linder",
+      "studio": "Crown Media",
+      "posterPath": "mov_015.jpg"
+    },
+    {
+      "id": "mov_019",
+      "title": "The Lakeside Cabin",
+      "year": 2025,
+      "country": "US",
+      "genres": [
+        "Horror",
+        "Mystery"
+      ],
+      "rating": 6.9,
+      "runtime": 101,
+      "tagline": "Six friends. One reunion. Something in the water.",
+      "logline": "Six college friends reunite at an Adirondack lake house for a fortieth birthday and discover the thing that took their seventh friend twenty years ago still lives in the lake.",
+      "synopsis": "They promised they would never come back. Forty is forty. The cabin is still there. The lake is still there. And the thing that took Erin in 1998 has been waiting twenty years for the rest of them.",
+      "cast": [
+        "Adwoa Okonkwo",
+        "Brett Henley"
+      ],
+      "director": "Greer Mountfort",
+      "studio": "Northstar Studios",
+      "posterPath": "mov_019.jpg"
+    },
+    {
+      "id": "mov_020",
+      "title": "The Lighthouse Keeper",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Drama"
+      ],
+      "rating": 8.0,
+      "runtime": 126,
+      "tagline": "Forty years later, the light is still on.",
+      "logline": "A celebrated novelist returns to her dying mother's Oregon coast lighthouse and faces the choice she avoided when she left forty years ago.",
+      "synopsis": "She has not been home in forty years. The light has been on every night anyway. Her mother has six months. The man who tended the light all those years is still on the porch when she arrives.",
+      "cast": [
+        "Patricia Lange",
+        "Solomon Reed"
+      ],
+      "director": "Helena Brandt",
+      "studio": "Lighthouse Productions",
+      "posterPath": "mov_020.jpg"
+    },
+    {
+      "id": "mov_021",
+      "title": "Hometown Hero",
+      "year": 2023,
+      "country": "US",
+      "genres": [
+        "Drama"
+      ],
+      "rating": 7.4,
+      "runtime": 119,
+      "tagline": "He gave the town a parade. They gave him a war.",
+      "logline": "A small-town Pennsylvania mayor running on coal nostalgia is forced to choose between his father's legacy and the union daughter who saw through him.",
+      "synopsis": "He inherited the town, the legacy, and the lie. His daughter inherited none of it. The strike has reached city hall. The press is on the porch. The election is on Monday.",
+      "cast": [
+        "Walter Greaves",
+        "Lily Fairbanks"
+      ],
+      "director": "Patrick Sloane",
+      "studio": "Crown Media",
+      "posterPath": "mov_021.jpg"
+    },
+    {
+      "id": "mov_027",
+      "title": "Sky High",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Animation",
+        "Adventure"
+      ],
+      "rating": 7.8,
+      "runtime": 96,
+      "tagline": "Her dreams are wearing roller skates.",
+      "logline": "In a floating city of bird people, the only flightless teen builds a pair of mechanical wings and races to win the Skyrim Cup before her invention is outlawed.",
+      "synopsis": "Every kid in the cloud city is born with wings. Wren was not. The Skyrim Cup is for racers. The council has banned mechanical wings. The race is in three days. Wren has a wrench and a plan.",
+      "cast": [
+        "Mira Brooks",
+        "Owen Garrick"
+      ],
+      "director": "Tatiana Brevik",
+      "studio": "Pinnacle Entertainment",
+      "posterPath": "mov_027.jpg"
+    },
+    {
+      "id": "mov_029",
+      "title": "The Glass Climb",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Biographical",
+        "Drama"
+      ],
+      "rating": 8.0,
+      "runtime": 137,
+      "tagline": "She built the empire. Then she walked across it.",
+      "logline": "The true-inspired story of a janitor's daughter who became the first woman to ascend the executive ranks of a hostile Wall Street firm in the 1980s.",
+      "synopsis": "She was hired to clean the office. She was promoted to typist. She was promoted again to analyst. By 1988 her name was on the door. By 1992 the door was locked from the inside. This is how the door opened.",
+      "cast": [
+        "Bryn Calloway",
+        "Charles Penrose"
+      ],
+      "director": "Helena Brandt",
+      "studio": "Lighthouse Productions",
+      "posterPath": "mov_029.jpg"
+    },
+    {
+      "id": "mov_030",
+      "title": "Inside Job",
+      "year": 2025,
+      "country": "US",
+      "genres": [
+        "Heist",
+        "Action"
+      ],
+      "rating": 7.5,
+      "runtime": 113,
+      "tagline": "They robbed the vault. Then they robbed the robbers.",
+      "logline": "A retired safecracker reassembles her old crew to steal back the gold a rival team lifted from her last job, on the night they try to lift it from her.",
+      "synopsis": "She was retired. The gold was hers. The rival crew thought she was retired. The rival crew was wrong. Tonight at midnight, two heists converge on the same vault. Only one crew walks out.",
+      "cast": [
+        "Naima Clarke",
+        "Beckett Hollis"
+      ],
+      "director": "Yael Brenner",
+      "studio": "Northstar Studios",
+      "posterPath": "mov_030.jpg"
+    },
+    {
+      "id": "mov_201",
+      "title": "Sentinel Nine",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Action",
+        "Sci-Fi"
+      ],
+      "rating": 7.4,
+      "runtime": 138,
+      "tagline": "The world's worst hero is still its only chance.",
+      "logline": "When the legendary Sentinel Force is wiped out in a single night, the team's least-promising rookie inherits the mantle and has to learn the job in front of the world that just lost its protectors.",
+      "synopsis": "The Sentinel Force is dead. The funeral was yesterday. The press conference is tomorrow. The world expects a successor. The world is about to be disappointed. And then it is about to be saved.",
+      "cast": [
+        "Cassius Vale",
+        "Selene Quint"
+      ],
+      "director": "Jonas Ohrt",
+      "studio": "Apex Pictures",
+      "posterPath": "mov_201.jpg"
+    },
+    {
+      "id": "mov_202",
+      "title": "Octo Heist",
+      "year": 2025,
+      "country": "US",
+      "genres": [
+        "Animation",
+        "Comedy"
+      ],
+      "rating": 7.6,
+      "runtime": 91,
+      "tagline": "Eight arms. One vault. Zero chill.",
+      "logline": "A wisecracking octopus and a paranoid sea turtle scheme to break into the world's most secure aquarium gift shop on the night of the annual blackout.",
+      "synopsis": "The annual blackout is in six hours. The gift shop has a starfish keychain Inky has been dreaming about for two years. Slate the sea turtle did not sign up for this. He thought they were going to bingo. They are not going to bingo.",
+      "cast": [
+        "Ronnie Hahn",
+        "Maia Furst"
+      ],
+      "director": "Marcos Cu",
+      "studio": "Pinnacle Entertainment",
+      "posterPath": "mov_202.jpg"
+    },
+    {
+      "id": "mov_203",
+      "title": "The Berlin Letter",
+      "year": 2023,
+      "country": "GB",
+      "genres": [
+        "Drama",
+        "War"
+      ],
+      "rating": 8.2,
+      "runtime": 132,
+      "tagline": "Two cities. One letter. Forty years of silence.",
+      "logline": "In November 1989, as the wall begins to fall, a quiet East Berlin librarian carries a forty-year-old undelivered letter across the city to a sister who may no longer remember her name.",
+      "synopsis": "The letter was written in 1949. It was never delivered. For forty years it sat in a desk drawer in East Berlin. Tonight the wall is coming down. Tonight she is finally going to deliver it. If her sister will open the door.",
+      "cast": [
+        "Ursula Hartmann",
+        "Wolfram Klein"
+      ],
+      "director": "Helena Brandt",
+      "studio": "Lighthouse Productions",
+      "posterPath": "mov_203.jpg"
+    },
+    {
+      "id": "mov_204",
+      "title": "Sound of Honey",
+      "year": 2024,
+      "country": "US",
+      "genres": [
+        "Biographical",
+        "Music"
+      ],
+      "rating": 7.8,
+      "runtime": 124,
+      "tagline": "Every song she wrote was for someone else.",
+      "logline": "The true-inspired rise of a Black Memphis songwriter who wrote the soul standards everyone sang and almost no one heard her sing.",
+      "synopsis": "She wrote three of the songs of the decade. Her name was on none of the records. The studio called her in for one more session. This time she brought her own demo. This time she sang it herself.",
+      "cast": [
+        "Halle Marquis",
+        "Vance Brutal"
+      ],
+      "director": "Donna Kirby",
+      "studio": "Crown Media",
+      "posterPath": "mov_204.jpg"
+    },
+    {
+      "id": "mov_205",
+      "title": "Death in Three Acts",
+      "year": 2025,
+      "country": "GB",
+      "genres": [
+        "Mystery",
+        "Thriller"
+      ],
+      "rating": 7.7,
+      "runtime": 119,
+      "tagline": "She wrote the play. They will perform the murder.",
+      "logline": "When a celebrated London theater impresario is killed at her own opening night gala, a sharp-tongued theater critic and a young understudy investigate the dozen suspects on the cast list.",
+      "synopsis": "Twelve members of the company. One playwright. One murdered impresario. One critic with a monocle and a grudge. One understudy who suddenly has a leading role. The play opens tonight. The killer is in the cast.",
+      "cast": [
+        "Edmund Cavalier",
+        "Beatrix Wren"
+      ],
+      "director": "Patricia Lambeth",
+      "studio": "Crown Media",
+      "posterPath": "mov_205.jpg"
+    },
+    {
+      "id": "mov_101",
+      "title": "Salt Hour",
+      "year": 2024,
+      "country": "NO",
+      "genres": [
+        "Drama",
+        "Mystery"
+      ],
+      "rating": 8.1,
+      "runtime": 108,
+      "tagline": "The fjord remembers what we forgot.",
+      "logline": "A reclusive Norwegian widow returns to the family fjord after her brother's body is found in the tide and forces the village to reckon with the lie they all kept.",
+      "synopsis": "On the morning of the lowest tide of the year, a body washes up at the family pier. Karin returns to the fjord she swore she'd never see again, and the village that helped her bury one truth must decide whether to bury another.",
+      "cast": [
+        "Karin Vestby",
+        "Eirik Dahlsrud"
+      ],
+      "director": "Aksel Vinje",
+      "studio": "Northern Light Pictures",
+      "posterPath": "mov_101.jpg"
+    },
+    {
+      "id": "mov_102",
+      "title": "Carne y Jazmín",
+      "year": 2023,
+      "country": "ES",
+      "genres": [
+        "Drama",
+        "Romance"
+      ],
+      "rating": 8.3,
+      "runtime": 121,
+      "tagline": "Madres e hijas. La verdad y la sangre.",
+      "logline": "A famous Madrid actress returns to her ailing mother's flat for one summer and unpacks four decades of buried secrets in a Spanish heatwave.",
+      "synopsis": "The daughter has been promising to come home for thirty years. When her mother is diagnosed, she finally returns to the apartment that smells of jasmine and rage. A summer of long lunches becomes a season of reckoning.",
+      "cast": [
+        "Begoña Castaño",
+        "Marta Ferreras"
+      ],
+      "director": "Pilar Estévez",
+      "studio": "Estudios Almazara",
+      "posterPath": "mov_102.jpg"
+    },
+    {
+      "id": "mov_003",
+      "title": "The Paper Lantern Boy",
+      "year": 2024,
+      "country": "JP",
+      "genres": [
+        "Animation",
+        "Drama"
+      ],
+      "rating": 8.4,
+      "runtime": 102,
+      "tagline": "Some lights are meant to find their way home.",
+      "logline": "In post-war Hokkaido, a young apprentice lantern-maker leads his orphaned younger brother across the islands toward a festival that promises a single answer.",
+      "synopsis": "Each summer the village releases a thousand paper lanterns. Each summer one boy holds his brother's hand a little tighter. This year is the last summer they will walk together. A hand-painted journey across post-war Japan.",
+      "cast": [
+        "Ren Kashiwagi",
+        "Haruki Sōma"
+      ],
+      "director": "Sora Mukai",
+      "studio": "Hoshi Animation",
+      "posterPath": "mov_003.jpg"
+    },
+    {
+      "id": "mov_004",
+      "title": "A Quiet Inheritance",
+      "year": 2025,
+      "country": "IR",
+      "genres": [
+        "Drama",
+        "Thriller"
+      ],
+      "rating": 8.2,
+      "runtime": 132,
+      "tagline": "Some doors should never be opened twice.",
+      "logline": "A Tehran widow inherits her late uncle's house in Isfahan and discovers that the family who lived there before her family did not leave by choice.",
+      "synopsis": "The deed is signed. The keys are received. But the neighbors do not knock, and the courtyard tiles remember a different name. A controlled, slow-burn family thriller from Iran.",
+      "cast": [
+        "Roya Naderipour",
+        "Kamran Eslami"
+      ],
+      "director": "Babak Tehrani",
+      "studio": "Iranian Independent Cinema",
+      "posterPath": "mov_004.jpg"
+    },
+    {
+      "id": "mov_005",
+      "title": "Vultures Over Pampa",
+      "year": 2024,
+      "country": "AR",
+      "genres": [
+        "Crime",
+        "Thriller"
+      ],
+      "rating": 7.9,
+      "runtime": 118,
+      "tagline": "Out here, the law has wings.",
+      "logline": "A former Patagonian sheriff hunts down the men who killed his partner across a thousand kilometers of windswept emptiness.",
+      "synopsis": "He gave up the badge ten years ago. He bought a truck and a dog and a quiet life. Then a name on a list came through the radio. Now he is driving south, and the dust is rising behind him.",
+      "cast": [
+        "Damián Iribarne",
+        "Lucrecia Vidal"
+      ],
+      "director": "Rodrigo Casares",
+      "studio": "Cono Sur Films",
+      "posterPath": "mov_005.jpg"
+    }
+  ]
+}

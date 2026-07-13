@@ -1,0 +1,129 @@
+{
+  "_meta": {
+    "kind": "cast",
+    "count": 5,
+    "language": "en",
+    "generatedFor": "App Store screenshots, no real-world references",
+    "note": "All actor names are fictional and crafted to fit each film's country of origin."
+  },
+  "mov_001": {
+    "lead1": {
+      "characterName": "Inge Solberg",
+      "actorName": "Karin Vestby",
+      "age": 41,
+      "ethnicity": "Norwegian",
+      "physicalDescription": "Ash-blonde hair cut bluntly at the collarbone, often half-tucked under a wool collar. Tall and narrow-shouldered with a long, plain face, freckles bleached by salt air, and a chronically tired set to her mouth.",
+      "costume": "Oversized charcoal fisherman's sweater, oilskin coat hanging open, faded jeans, a thin silver chain at the throat.",
+      "posterPose": "Standing on a wet rock at the fjord's edge in three-quarter profile, head turned slightly toward the camera, hands in coat pockets.",
+      "emotionalProjection": "weighted melancholy held tight under composure",
+      "billing": 1
+    },
+    "lead2": {
+      "characterName": "Jonas Mehren",
+      "actorName": "Eirik Dahlsrud",
+      "age": 56,
+      "ethnicity": "Norwegian",
+      "physicalDescription": "Iron-grey beard kept short, weather-cracked cheeks, deep-set hazel eyes under heavy brows. Stocky and slightly stooped from decades on small boats, with thick scarred hands.",
+      "costume": "Patched navy fisherman's jumper over a flannel shirt, knit cap pushed back, rubber boots cut off-frame.",
+      "posterPose": "Half-turned away in the background mist, looking past Inge toward the water, lantern hanging from one fist.",
+      "emotionalProjection": "guarded silence carrying old guilt",
+      "billing": 2
+    }
+  },
+  "mov_002": {
+    "lead1": {
+      "characterName": "Pilar Arroyo",
+      "actorName": "Begoña Castaño",
+      "age": 68,
+      "ethnicity": "Spanish (Castilian)",
+      "physicalDescription": "Silver hair pinned in a low loose chignon, a few strands falling at the temple. Olive complexion lined finely around the eyes, dark brown irises, a strong straight nose and a small mole at the left jaw.",
+      "costume": "Ivory silk blouse with a small mother-of-pearl button at the throat, a draped raw-linen skirt, reading glasses pushed up into her hair.",
+      "posterPose": "Seated by a tall shuttered window in soft amber light, hands folded in her lap, gaze turned toward someone just off-frame.",
+      "emotionalProjection": "tender resignation veined with pride",
+      "billing": 1
+    },
+    "lead2": {
+      "characterName": "Lucía Bermejo",
+      "actorName": "Marta Ferreras",
+      "age": 34,
+      "ethnicity": "Spanish (Andalusian)",
+      "physicalDescription": "Dark chestnut waves loose past the shoulders, warm tan skin, full mouth often left slightly parted. Small frame, defined collarbones, a faint white scar above the right eyebrow.",
+      "costume": "Sleeveless rust-red cotton dress with a low square neckline, thin gold hoops, a child's pale ribbon tied around her wrist.",
+      "posterPose": "Standing behind Pilar's chair in shadow, one hand resting lightly on the chair's back, looking straight at the camera.",
+      "emotionalProjection": "watchful longing with a held secret",
+      "billing": 2
+    }
+  },
+  "mov_003": {
+    "lead1": {
+      "characterName": "Tarou Minekawa",
+      "actorName": "Ren Kashiwagi",
+      "age": 22,
+      "ethnicity": "Japanese",
+      "physicalDescription": "Straight black hair falling into the eyes, narrow shoulders, pale skin with a faint flush across the cheekbones. Long fingers, a small chip in one front tooth visible when he speaks.",
+      "costume": "Indigo workshop apron over a slate-grey kasuri shirt, sleeves tied back with cord, a paper lantern held at chest height.",
+      "posterPose": "Crouched on a wooden bridge at dusk, lantern lifted before him, glancing back over his shoulder at the smaller figure.",
+      "emotionalProjection": "quiet wonder edged with sorrow",
+      "billing": 1
+    },
+    "lead2": {
+      "characterName": "The Boy With No Name",
+      "actorName": "Haruki Sōma",
+      "age": 9,
+      "ethnicity": "Japanese",
+      "physicalDescription": "Round face, dark uneven bowl cut, large black eyes set wide apart, two small scrapes on one knee. Barefoot and slight, with a slightly hunched, listening posture.",
+      "costume": "Faded indigo yukata a size too large, frayed at the hem, no sash properly tied, no footwear.",
+      "posterPose": "Standing several steps behind Tarou on the bridge, half-translucent in the fog, looking directly out at the viewer.",
+      "emotionalProjection": "patient solitude without self-pity",
+      "billing": 2
+    }
+  },
+  "mov_004": {
+    "lead1": {
+      "characterName": "Farzaneh Tabatabai",
+      "actorName": "Roya Naderipour",
+      "age": 47,
+      "ethnicity": "Iranian (Persian)",
+      "physicalDescription": "Dark hair streaked with early grey, drawn back loosely under a soft charcoal scarf. Sharp brows, deep-set black eyes, a long thin nose and a habitual tightness at the corners of the mouth.",
+      "costume": "Long graphite tunic over slim black trousers, charcoal headscarf draped low, a thin gold ring on the right hand.",
+      "posterPose": "Seated at a low table in a tiled courtyard, fingers laced around a glass tea cup, eyes lifted toward someone just off-frame.",
+      "emotionalProjection": "controlled fury kept behind courteous stillness",
+      "billing": 1
+    },
+    "lead2": {
+      "characterName": "Behzad Tabatabai",
+      "actorName": "Kamran Eslami",
+      "age": 52,
+      "ethnicity": "Iranian (Persian)",
+      "physicalDescription": "Receding black hair kept short, salt-and-pepper at the temples, neatly trimmed beard along a heavy jaw. Broad-shouldered with a small paunch, deep frown lines between the brows.",
+      "costume": "Dust-grey two-piece suit, no tie, top button undone, a folded document held loosely in one hand.",
+      "posterPose": "Standing in a doorway behind Farzaneh, half in shadow, watching her over his shoulder without turning fully around.",
+      "emotionalProjection": "wounded authority barely steadying itself",
+      "billing": 2
+    }
+  },
+  "mov_005": {
+    "lead1": {
+      "characterName": "Esteban Quiroga",
+      "actorName": "Damián Iribarne",
+      "age": 49,
+      "ethnicity": "Argentine (criollo)",
+      "physicalDescription": "Dark brown hair flecked with grey, swept back from a high forehead, a thick moustache shading the upper lip. Wiry build, tanned and dust-grained skin, a vertical scar running from the right cheekbone to the jaw.",
+      "costume": "Sun-faded khaki shirt with rolled sleeves, leather waistcoat, a battered wide-brim hat tipped low, scuffed boots cut off-frame.",
+      "posterPose": "Standing alone on a cracked dirt road at noon, hat shading his eyes, one hand resting on the open door of an old pickup.",
+      "emotionalProjection": "exhausted resolve sharpening into suspicion",
+      "billing": 1
+    },
+    "lead2": {
+      "characterName": "Marisol Cabaña",
+      "actorName": "Lucrecia Vidal",
+      "age": 58,
+      "ethnicity": "Argentine (Patagonian)",
+      "physicalDescription": "Long black-grey hair tied in a single low braid, deep brown skin weathered by wind, broad cheekbones and a flat, calm gaze. Thickset and short, with strong hands that hang easily at her sides.",
+      "costume": "Dust-coloured wool poncho over a dark work shirt, plain canvas trousers, a leather cord at the neck.",
+      "posterPose": "Standing in the middle distance behind Esteban, facing the camera squarely against an empty horizon, arms loose at her sides.",
+      "emotionalProjection": "implacable grief carrying its own verdict",
+      "billing": 2
+    }
+  }
+}

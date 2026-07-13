@@ -1,0 +1,98 @@
+# Miscellaneous
+*.class
+*.log
+*.pyc
+*.swp
+.DS_Store
+.atom/
+.build/
+.buildlog/
+.history
+.svn/
+.swiftpm/
+migrate_working_dir/
+
+# IntelliJ related
+*.iml
+*.ipr
+*.iws
+.idea/
+
+# The .vscode folder contains launch configuration and tasks you configure in
+# VS Code which you may wish to be included in version control, so this line
+# is commented out by default.
+#.vscode/
+
+# Flutter/Dart/Pub related
+**/doc/api/
+**/ios/Flutter/.last_build_id
+.dart_tool/
+.flutter-plugins-dependencies
+.pub-cache/
+.pub/
+/build/
+/coverage/
+
+# Symbolication related
+app.*.symbols
+
+# Obfuscation related
+app.*.map.json
+
+# Android Studio will place build artifacts here
+/android/app/debug
+/android/app/profile
+/android/app/release
+
+# Release packaging output (DMG, etc.)
+/dist/
+
+# Claude Code session / worktree data
+/.claude/
+
+# iOS build artifacts
+/ios/build/
+/ios/Pods/
+/ios/.symlinks/
+/ios/Flutter/flutter_export_environment.sh
+/ios/Flutter/Generated.xcconfig
+
+# macOS / Linux / Windows native artifacts
+/macos/build/
+/macos/Pods/
+/macos/.symlinks/
+/macos/Flutter/ephemeral/
+/linux/flutter/ephemeral/
+/windows/flutter/ephemeral/
+
+# Signing keys & keystores - NEVER commit
+key.properties
+/android/key.properties
+/android/keystore/
+*.jks
+*.keystore
+*.p12
+*.pem
+
+# Local machine config
+local.properties
+**/local.properties
+
+# Firebase / Google service configs
+google-services.json
+GoogleService-Info.plist
+
+# screenshot_build.sh çalışırken oluşan geçici pubspec yedeği. Script
+# çıkışında otomatik silinir, ama crash/SIGKILL sonrası kalırsa diye
+# git'ten uzak tutuyoruz.
+/pubspec.yaml.demo-backup
+
+
+# AI generation pipeline (fal.ai key, secrets)
+/.env
+/scripts/.env
+/scripts/secrets.json
+
+# Drift/sqlite test artifacts
+*.sqlite
+*.sqlite-journal

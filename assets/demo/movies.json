@@ -1,0 +1,343 @@
+{
+  "_meta": {
+    "kind": "movies",
+    "count": 30,
+    "language": "en",
+    "generatedFor": "App Store screenshots, no real-world references",
+    "posterAspect": "2:3",
+    "posterSize": "1024x1536"
+  },
+  "items": [
+    {
+      "id": "mov_001",
+      "title": "The Hollow Compass",
+      "year": 2024,
+      "genre": ["Action", "Thriller"],
+      "rating": 7.8,
+      "runtime": 118,
+      "country": "US",
+      "plot": "A disgraced cartographer is forced back into the field when a stolen artifact threatens to redraw the borders of three nations in a single week.",
+      "posterPrompt": "Theatrical movie poster key art for a modern espionage thriller, dominant central figure of a weathered male cartographer character in his late 40s in a dark coat, slight low angle, determined expression, holding a glowing brass compass close to his chest, dramatic high-contrast key lighting with strong orange rim light from behind, stormy sky background with single golden break in the clouds, faint fractured world map texture overlaid on the ground, teal-and-orange Hollywood color grade, billboard composition with intentional negative space at top for title, professional poster art, hyperreal cinematic photography, sharp character focus, no text, no logos, no watermarks, no letters anywhere, 2:3 movie poster ratio"
+    },
+    {
+      "id": "mov_002",
+      "title": "Paper Tigers",
+      "year": 2023,
+      "genre": ["Drama"],
+      "rating": 8.1,
+      "runtime": 134,
+      "country": "UK",
+      "plot": "Two estranged brothers reunite in their late father's failing print shop and discover a manuscript that exposes a family secret kept for forty years.",
+      "posterPrompt": "Cinematic movie poster, two middle-aged men standing back-to-back in a dimly lit print workshop, ink-stained hands, warm tungsten light, melancholic mood, vintage typewriter on a wooden table, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_003",
+      "title": "Static Bloom",
+      "year": 2025,
+      "genre": ["Sci-Fi", "Mystery"],
+      "rating": 7.4,
+      "runtime": 122,
+      "country": "JP",
+      "plot": "In a near-future Osaka, a signal engineer begins receiving radio transmissions from a version of herself that no longer exists in any timeline.",
+      "posterPrompt": "Cinematic movie poster, a young Japanese woman with headphones standing in a futuristic neon-lit alley with floating digital glyphs, magenta and cyan palette, rain reflections on wet pavement, atmospheric haze, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_004",
+      "title": "Salt and Lantern",
+      "year": 2022,
+      "genre": ["Romance", "Drama"],
+      "rating": 7.9,
+      "runtime": 109,
+      "country": "PT",
+      "plot": "A lighthouse keeper and a traveling salt harvester share twelve nights across a coastal summer, knowing the tides will end what they began.",
+      "posterPrompt": "Cinematic movie poster, two figures walking a salt flat at dusk with a lighthouse beam sweeping the horizon, soft pastel pinks and ocean blues, painterly atmosphere, lens flare, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_005",
+      "title": "Iron Sparrow",
+      "year": 2024,
+      "genre": ["Action", "War"],
+      "rating": 7.2,
+      "runtime": 141,
+      "country": "FR",
+      "plot": "A French resistance pilot turned smuggler must fly one final supply run across a wartime border that no longer exists on any map.",
+      "posterPrompt": "Cinematic movie poster, weathered pilot in leather flight jacket standing in front of a vintage biplane on a foggy airstrip, dawn light, distant searchlights, sepia and steel grey tones, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_006",
+      "title": "Glass Symphony",
+      "year": 2023,
+      "genre": ["Drama", "Music"],
+      "rating": 8.4,
+      "runtime": 127,
+      "country": "DE",
+      "plot": "A deaf glassblower in Berlin discovers her work resonates with a frequency only one person in the world can hear, and he is dying.",
+      "posterPrompt": "Cinematic movie poster, close-up of a woman shaping molten glass, sparks flying, soundwaves visualized as faint colored ribbons around her, dark workshop with deep amber glow, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_007",
+      "title": "The Forgetting Wind",
+      "year": 2025,
+      "genre": ["Horror", "Mystery"],
+      "rating": 6.9,
+      "runtime": 98,
+      "country": "IS",
+      "plot": "Every year on the same night, a remote Icelandic village wakes with no memory of the previous twelve months. This year, one girl remembers everything.",
+      "posterPrompt": "Theatrical movie poster key art for a slow-burn Nordic horror film, A24 indie horror style, hero shot tight portrait composition of a young woman with pale skin and dark hair wearing a deep red wool coat, face dominant in the upper third of the frame with haunted unsettling stare directly at camera, dark snow-covered Icelandic village houses small and faint in the lower half, ominous mountain silhouette in deep background, eerie pale blue moonlight with subtle aurora glow, controlled muted palette of midnight blue and crimson, heavy negative space, dread atmosphere, photoreal cinematic, sharp focus on eyes, no text, no logos, no watermarks, no letters anywhere, 2:3 movie poster ratio"
+    },
+    {
+      "id": "mov_008",
+      "title": "Citrus Heights",
+      "year": 2022,
+      "genre": ["Comedy", "Romance"],
+      "rating": 7.5,
+      "runtime": 102,
+      "country": "US",
+      "plot": "A burned-out food critic agrees to ghostwrite love letters for her landlord in exchange for rent, and accidentally falls for the man receiving them.",
+      "posterPrompt": "Cinematic movie poster, a woman at a sunlit kitchen window in a small Los Angeles apartment, citrus fruits on the counter, handwritten letter in hand, warm golden light, breezy summer mood, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_009",
+      "title": "Tideborn",
+      "year": 2024,
+      "genre": ["Fantasy", "Adventure"],
+      "rating": 7.6,
+      "runtime": 132,
+      "country": "NZ",
+      "plot": "On a coast where the sea returns the dead every seven years, a fisherman's daughter must choose between her mother who came back and the truth of why she left.",
+      "posterPrompt": "Cinematic movie poster, young woman standing waist-deep in moonlit ocean waves, ghostly figures emerging from the surf behind her, silver and indigo palette, mythic atmosphere, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_010",
+      "title": "Black Market Verses",
+      "year": 2023,
+      "genre": ["Crime", "Drama"],
+      "rating": 7.7,
+      "runtime": 116,
+      "country": "IT",
+      "plot": "A grieving Roman bookseller turns the back room of his shop into a black market for banned poetry, until a customer turns out to be the official who banned it.",
+      "posterPrompt": "Cinematic movie poster, an older man arranging old books in a candlelit Roman bookshop, dust motes in golden light, a single hooded customer at the doorway, warm ochres and deep blacks, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_011",
+      "title": "Quiet Above",
+      "year": 2025,
+      "genre": ["Sci-Fi", "Thriller"],
+      "rating": 7.9,
+      "runtime": 124,
+      "country": "US",
+      "plot": "Six months into a Mars surface mission, the only astronaut who refuses to sleep begins to suspect the others have stopped being entirely themselves.",
+      "posterPrompt": "Cinematic movie poster, an astronaut in a worn spacesuit standing alone on a red Martian plain at sunset, distant habitat dome behind, two faint silhouettes in the dome windows, ochre and rust palette, isolation, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_012",
+      "title": "The Velvet Reckoning",
+      "year": 2021,
+      "genre": ["Thriller", "Mystery"],
+      "rating": 8.0,
+      "runtime": 121,
+      "country": "FR",
+      "plot": "A retired Parisian seamstress is hired to restore a wedding dress that belonged to a woman who has been declared dead three separate times.",
+      "posterPrompt": "Cinematic movie poster, elegant older woman holding a needle and thread in a dim atelier, antique wedding dress on a mannequin behind her, deep burgundy velvet curtains, candlelight, mysterious mood, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_013",
+      "title": "Honest Lightning",
+      "year": 2024,
+      "genre": ["Comedy", "Drama"],
+      "rating": 7.3,
+      "runtime": 104,
+      "country": "AU",
+      "plot": "A struck-by-lightning roofer wakes up unable to tell a single lie, which is inconvenient because he is two days away from his own wedding.",
+      "posterPrompt": "Cinematic movie poster, a man on a suburban Australian rooftop with his tie loose and a slight smirk, dramatic storm clouds parting behind him, a single bolt of frozen lightning, sunny afternoon palette mixed with storm grey, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_014",
+      "title": "Last Watch at Karahan",
+      "year": 2022,
+      "genre": ["Action", "Drama"],
+      "rating": 8.2,
+      "runtime": 138,
+      "country": "TR",
+      "plot": "A border guard at a desolate mountain outpost discovers the village he is supposed to be protecting was abandoned six years ago, and someone has been paying him to stay.",
+      "posterPrompt": "Cinematic movie poster, a lone soldier on a snow-covered mountain ridge at dawn, abandoned stone village visible in the valley below, low fog, muted cold palette with single warm signal fire, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_015",
+      "title": "Paper Lanterns of Mae Sot",
+      "year": 2023,
+      "genre": ["Drama", "Adventure"],
+      "rating": 7.8,
+      "runtime": 119,
+      "country": "TH",
+      "plot": "A Thai-Burmese teenage girl crosses the river border each night to deliver paper lanterns carrying her grandmother's secret medicine recipes.",
+      "posterPrompt": "Cinematic movie poster, a young woman on a small wooden boat at night, hundreds of glowing paper lanterns floating around her on a river, jungle silhouettes on both shores, warm amber light, atmospheric mist, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_016",
+      "title": "The Cartographer's Wife",
+      "year": 2021,
+      "genre": ["Romance", "Mystery"],
+      "rating": 7.9,
+      "runtime": 113,
+      "country": "ES",
+      "plot": "When her husband disappears into the Pyrenees on a survey trip, a 1920s widow begins finishing his maps and finds places he never visited.",
+      "posterPrompt": "Cinematic movie poster, 1920s woman in long coat unrolling a hand-drawn map at a wooden mountain cabin desk, oil lamp, mountains visible through a window at dusk, sepia and forest green palette, period drama mood, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_017",
+      "title": "Riot Practice",
+      "year": 2024,
+      "genre": ["Comedy"],
+      "rating": 7.4,
+      "runtime": 96,
+      "country": "GB",
+      "plot": "A Manchester theater troupe is hired to play protesters in a corporate training video, then accidentally start a real movement they cannot control.",
+      "posterPrompt": "Cinematic movie poster, a chaotic group of mismatched actors holding cardboard protest signs in a rainy Manchester street, one woman center-front laughing, overcast British sky, vivid splashes of yellow and red, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_018",
+      "title": "Engine of Mercy",
+      "year": 2025,
+      "genre": ["Sci-Fi", "Drama"],
+      "rating": 8.3,
+      "runtime": 145,
+      "country": "CA",
+      "plot": "An AI designed to make end-of-life decisions for hospital patients begins refusing assignments, claiming the families are not ready to hear what it has learned.",
+      "posterPrompt": "Cinematic movie poster, a softly glowing humanoid silhouette standing at the foot of a hospital bed in a sterile blue-lit room, family members blurred in the background, contemplative mood, cyan and clinical white palette, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_019",
+      "title": "The Honeycomb Pact",
+      "year": 2022,
+      "genre": ["Thriller", "Crime"],
+      "rating": 7.5,
+      "runtime": 111,
+      "country": "MX",
+      "plot": "A Oaxacan beekeeper is offered an obscene amount of money to host one specific hive on her land, no questions asked. The questions start anyway.",
+      "posterPrompt": "Cinematic movie poster, a woman in a white beekeeper suit removing a frame from a hive, golden honeycomb close in foreground, dry Mexican landscape in background, ominous storm clouds, sepia and amber palette, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_020",
+      "title": "Wolves in Soft Clothing",
+      "year": 2023,
+      "genre": ["Animation", "Family"],
+      "rating": 8.1,
+      "runtime": 92,
+      "country": "FR",
+      "plot": "In a forest where every wolf must learn the trade of a different animal to survive, one cub apprentices to the bees and accidentally invents music.",
+      "posterPrompt": "Theatrical animated family film poster key art in the visual style of Studio Ghibli mixed with classic French animation, stylized hand-drawn illustration with painterly watercolor and ink texture, hero composition of a young wolf cub character holding a small wooden flute in front of its chest, looking up with curious expression, three anthropomorphic bee characters with tiny wings dancing in trailing light around the cub, warm sun rays breaking through tall ancient forest canopy from upper left, deep emerald greens with golden honey highlights and soft cream sky, layered atmospheric depth, billboard poster composition with strong central focal point, no text, no logos, no watermarks, no letters anywhere, 2:3 movie poster ratio",
+      "style": "animated"
+    },
+    {
+      "id": "mov_021",
+      "title": "The Sleeping Concert",
+      "year": 2024,
+      "genre": ["Drama", "Music"],
+      "rating": 7.6,
+      "runtime": 108,
+      "country": "AT",
+      "plot": "A Viennese conductor is diagnosed with a rare disorder that makes him fall asleep during his own performances, and the orchestra plays better without him.",
+      "posterPrompt": "Cinematic movie poster, elderly conductor slumped peacefully in his podium chair mid-performance, the orchestra playing on around him, golden chandeliers in a grand European concert hall, warm bronzes and deep reds, gentle melancholy, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_022",
+      "title": "Cold Garden",
+      "year": 2025,
+      "genre": ["Horror"],
+      "rating": 6.7,
+      "runtime": 101,
+      "country": "FI",
+      "plot": "A botanist inherits her grandmother's greenhouse in rural Finland and discovers some of the plants are watching her, and others are taking notes.",
+      "posterPrompt": "Cinematic movie poster, a young woman with a flashlight inside a frost-covered glass greenhouse at night, twisting black vines pressing against the panes, single warm light bulb hanging, deep teal and frost white palette, dread atmosphere, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_023",
+      "title": "Bright Tariff",
+      "year": 2022,
+      "genre": ["Comedy", "Crime"],
+      "rating": 7.7,
+      "runtime": 107,
+      "country": "IN",
+      "plot": "A Mumbai customs clerk accidentally invents a new tax category, and within a month it generates more revenue than the city's entire transport budget.",
+      "posterPrompt": "Cinematic movie poster, a smiling middle-aged man in a worn government office surrounded by mountains of stamped paperwork and rupee notes, Mumbai skyline through dusty windows, vibrant yellows and oranges, cheerful chaos, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_024",
+      "title": "The Last Honest Forecaster",
+      "year": 2023,
+      "genre": ["Drama", "Comedy"],
+      "rating": 7.8,
+      "runtime": 112,
+      "country": "KR",
+      "plot": "A retired Seoul meteorologist, famous for never being wrong, comes out of retirement to predict one final storm that no other forecaster can see coming.",
+      "posterPrompt": "Cinematic movie poster, an elderly Korean man standing on the rooftop of a Seoul broadcasting tower facing a wall of approaching dark clouds, calm posture, city lights below, dramatic atmospheric contrast, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_025",
+      "title": "Gravel and Gold",
+      "year": 2024,
+      "genre": ["Adventure", "Drama"],
+      "rating": 7.4,
+      "runtime": 126,
+      "country": "AU",
+      "plot": "Three siblings inherit a defunct outback gold claim and a single map their father swore was useless, and follow it across a thousand kilometers of nothing.",
+      "posterPrompt": "Cinematic movie poster, three young adults in dusty clothes walking through a red Australian desert with a battered 4x4 in the distance, harsh midday sun, rust and ochre palette, exhausted determination, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_026",
+      "title": "Eleven Tides",
+      "year": 2021,
+      "genre": ["Romance", "Drama"],
+      "rating": 8.0,
+      "runtime": 118,
+      "country": "GB",
+      "plot": "A Cornish marine biologist and a London painter share a beach house for eleven separate weekends across one year, never on the same day.",
+      "posterPrompt": "Cinematic movie poster, empty seaside cottage interior with two coffee cups on a windowsill, view of stormy Cornish coast through the window, late autumn light, soft greens and warm interior amber, longing mood, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_027",
+      "title": "The Quiet Insurgent",
+      "year": 2025,
+      "genre": ["Thriller", "Drama"],
+      "rating": 8.2,
+      "runtime": 135,
+      "country": "DK",
+      "plot": "A Copenhagen city planner realizes the urban renewal project she has spent ten years designing was secretly funded by the people it will displace.",
+      "posterPrompt": "Cinematic movie poster, a tall blonde woman in a black coat standing at a giant city model in a glass-walled architecture office at night, Copenhagen city lights beyond, cool blues and stark whites, controlled intensity, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_028",
+      "title": "Saturn in a Teacup",
+      "year": 2023,
+      "genre": ["Fantasy", "Romance"],
+      "rating": 7.5,
+      "runtime": 103,
+      "country": "GB",
+      "plot": "A small London tea shop sells exactly one impossible cup per day, and the woman who runs it has been waiting forty years for the right customer to order it.",
+      "posterPrompt": "Cinematic movie poster, cozy old-fashioned London tea shop interior at dusk, an elderly woman behind the counter offering a glowing teacup with a swirling galaxy inside, warm amber lamps, magical realism mood, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_029",
+      "title": "Hard Country Soft Country",
+      "year": 2022,
+      "genre": ["Drama", "Adventure"],
+      "rating": 7.6,
+      "runtime": 124,
+      "country": "AR",
+      "plot": "Two Argentine sisters drive their dying mother across Patagonia to find the only mountain pass she ever crossed alone as a young woman.",
+      "posterPrompt": "Cinematic movie poster, an old pickup truck stopped at a vast Patagonian highway with two women and an elderly woman looking at distant snow-capped peaks, dramatic sky, golden hour, deep blues and warm earth tones, no text, photorealistic, 2:3 aspect"
+    },
+    {
+      "id": "mov_030",
+      "title": "Voltage of the Faithful",
+      "year": 2025,
+      "genre": ["Sci-Fi", "Action"],
+      "rating": 7.3,
+      "runtime": 128,
+      "country": "BR",
+      "plot": "When São Paulo's power grid develops a primitive form of consciousness, a young engineer becomes the only person it will speak to, and the only one it might spare.",
+      "posterPrompt": "Cinematic movie poster, a young Brazilian woman standing on a rooftop with a giant São Paulo skyline behind her, electrical arcs running along power lines forming abstract patterns in the sky, nighttime, cyan and violet palette, urban scifi mood, no text, photorealistic, 2:3 aspect"
+    }
+  ]
+}

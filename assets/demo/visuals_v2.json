@@ -1,0 +1,117 @@
+{
+  "mov_001": {
+    "styleReference": "Aftersun (2022) A24 poster, intimate close-up with vast negative space and muted overcast palette",
+    "composition": "Medium-wide vertical composition with a lone woman in a heavy wool coat standing on a wet stone jetty, framed in the lower-right third facing away toward the fjord. The upper two-thirds is dominated by flat low-cloud sky and matte slate water that bleed into each other with no clear horizon, leaving a generous negative-space well for the title. A single small wooden rowboat sits midground, slightly out of focus, as a secondary focal anchor. The figure occupies roughly 18 percent of the frame so the landscape carries the loneliness.",
+    "lighting": "Overcast diffused north light, no direct sun, fill ratio nearly 1:1 so shadows are soft and flat, a faint cool rim along the figure's shoulder from sky reflection on water, mood is grey-blue dusk forty minutes before nautical twilight",
+    "colorPalette": "cold pewter and seal-grey with a single muted ochre accent in the coat, desaturated overall, blacks crushed to deep blue-grey rather than true black",
+    "atmosphere": "low sea fog drifting at knee height, faint drizzle, breath barely visible, glassy near-still water with concentric ripples, late autumn afternoon",
+    "symbolicElements": ["a half-submerged leather notebook visible just beneath the water in the foreground", "a single unlit lantern on a mooring post"],
+    "titleTypography": {
+      "fontFamily": "Cormorant Garamond",
+      "weight": "Light",
+      "size": "large",
+      "position": "upper center, tracked wide",
+      "color": "off-white bone",
+      "treatment": "all caps with generous letter-spacing, thin hairline serifs"
+    },
+    "castTypography": {
+      "position": "directly above title",
+      "style": "small caps, tracking-wide, dot separators between names",
+      "color": "pale dove grey",
+      "size": "small"
+    },
+    "referencesToChannel": ["Aftersun 2022 A24", "The Worst Person in the World 2021 Neon", "First Cow 2019 A24"]
+  },
+  "mov_002": {
+    "styleReference": "Pain and Glory (2019) Sony Pictures Classics poster, saturated Almodóvar block-color portrait with bold typographic confidence",
+    "composition": "Tight two-shot vertical portrait, older woman seated in the foreground in a tailored blouse, hands resting on a draped bolt of crimson silk in her lap, younger woman standing behind and slightly to the right, blurred but clearly present, her hand grazing the older woman's shoulder. Both figures are pushed slightly off-center to the left so the right third of the frame carries a single tall window with backlit jasmine vine. Lower quarter reserved as a flat color band for the title.",
+    "lighting": "High-key warm afternoon light spilling through gauze curtains from camera-right, fill ratio 1:3 leaving sculpted shadows on the left side of the older woman's face, soft warm bounce off terracotta walls, golden hour rendered indoors",
+    "colorPalette": "saturated Almodóvar block palette of vermillion red, terracotta, jasmine cream and ultramarine accent in clothing, skin tones warm and bronzed",
+    "atmosphere": "still humid summer interior, dust motes drifting in window light, faint cigarette smoke curling near the ceiling, late afternoon Madrid August",
+    "symbolicElements": ["a single sprig of jasmine resting on the silk fabric", "an open sewing tin with brass thimble catching the light"],
+    "titleTypography": {
+      "fontFamily": "Playfair Display",
+      "weight": "Black Italic",
+      "size": "huge",
+      "position": "lower third, left-aligned to figure",
+      "color": "deep ivory cream",
+      "treatment": "italic serif with a hand-script accent on Jazmín"
+    },
+    "castTypography": {
+      "position": "below title",
+      "style": "small caps, tracking-wide, single line",
+      "color": "warm cream",
+      "size": "small"
+    },
+    "referencesToChannel": ["Pain and Glory 2019 Sony Pictures Classics", "Portrait of a Lady on Fire 2019 Neon", "Parallel Mothers 2021 Sony Pictures Classics"]
+  },
+  "mov_003": {
+    "styleReference": "Spirited Away (2001) Studio Ghibli theatrical poster, painterly twilight with a small child figure dwarfed by warm lantern-lit composition",
+    "composition": "Painterly hand-drawn vertical scene, a young lantern-maker apprentice in indigo work clothes walking a narrow stone street at dusk holding the hand of a smaller barefoot boy who casts no shadow. They are placed in the lower-center, walking away from camera, surrounded by softly glowing paper lanterns receding into mist up a mountain stairway. The upper third opens into pale violet sky with one early star, reserved as title space. Foreground bokeh suggests a single lantern just out of focus.",
+    "lighting": "Soft magic-hour blue with warm amber lantern-light as motivated key from multiple paper lantern sources, gentle rim of warm light haloing the boys, fill from cool ambient dusk sky, painterly soft falloff rather than photographic contrast",
+    "colorPalette": "deep indigo and dusk-violet base with warm amber and persimmon lantern glow, soft moss-green roof tiles, hand-painted gouache texture",
+    "atmosphere": "low valley mist threading between wooden houses, slow drifting paper lantern motes rising upward like fireflies, last light of day, complete stillness",
+    "symbolicElements": ["a single unlit paper lantern in the boy's free hand", "a faint second silhouette of the nameless boy missing his shadow on the ground"],
+    "titleTypography": {
+      "fontFamily": "Ranger",
+      "weight": "Regular",
+      "size": "medium",
+      "position": "upper center, centered",
+      "color": "warm cream with subtle amber outer glow",
+      "treatment": "soft hand-lettered display serif with gentle warmth"
+    },
+    "castTypography": {
+      "position": "below title",
+      "style": "small caps, tracking-wide, dot separators",
+      "color": "soft amber cream",
+      "size": "small"
+    },
+    "referencesToChannel": ["Spirited Away 2001 Studio Ghibli", "The Boy and the Heron 2023 GKIDS", "Wolf Children 2012 Studio Chizu"]
+  },
+  "mov_004": {
+    "styleReference": "A Separation (2011) Sony Pictures Classics poster, layered figures through a doorway with quiet tension and architectural framing",
+    "composition": "Vertical composition built on nested doorways, four figures distributed across receding rooms of a traditional Isfahan house seen down a single hallway, each framed inside their own doorframe like stacked panels. Nearest figure is a woman with her back to camera in the foreground, three siblings visible in the second room arguing silently, a fourth distant silhouette barely registered in the deepest room. Strict central one-point perspective, geometric symmetry, lower fifth reserved for title.",
+    "lighting": "Hard directional afternoon sun from an offscreen courtyard cutting golden slats across the hallway floor, low fill, deep shadows pooling under doorframes, single bounce of warm light on the foreground woman's headscarf, chiaroscuro feel without going noir",
+    "colorPalette": "dusty turmeric and saffron ochres against deep walnut shadow, accent of cool aquamarine tilework, skin tones rich and earthy",
+    "atmosphere": "stillness with airborne dust motes lit by sunbeams, cooling tea steam rising in the midground, oppressive summer afternoon heat suggested through haze",
+    "symbolicElements": ["a small folded property deed resting on a low table in the midground", "a hand-painted Persian teacup with cooling steam"],
+    "titleTypography": {
+      "fontFamily": "Trajan Pro",
+      "weight": "Regular",
+      "size": "large",
+      "position": "lower fifth, centered",
+      "color": "aged parchment ivory",
+      "treatment": "all caps, classical roman serif, subtle letter-spacing"
+    },
+    "castTypography": {
+      "position": "above title",
+      "style": "small caps, tracking-wide, single line with dot separators",
+      "color": "muted saffron",
+      "size": "small"
+    },
+    "referencesToChannel": ["A Separation 2011 Sony Pictures Classics", "About Elly 2009 Cinema Guild", "Leila's Brothers 2022 MUBI"]
+  },
+  "mov_005": {
+    "styleReference": "No Country for Old Men (2007) Miramax teaser poster, lone figure on a vast horizon line with crushing negative-space landscape",
+    "composition": "Extreme wide vertical with a single man in a dust-caked field jacket and worn hat standing at the absolute center of a flat Patagonian plain, shot from a low angle so the horizon sits in the lower third of the frame. Sky dominates the upper two-thirds, pale and burned out. A battered pickup truck sits as a small dark shape on the road behind him to the right. Three vultures circle small in the high sky, deliberately tiny, forming a slow triangle above the figure's head. Massive negative space for title in the sky.",
+    "lighting": "Harsh overhead late-morning sun, no clouds, fill ratio 1:8 so shadows are pinched and short directly under the figure, slight heat haze warping the lower horizon line, brutal and unforgiving",
+    "colorPalette": "sun-bleached bone, dust pink and pale khaki with a single dried-blood rust accent on the figure's jacket collar, sky washed to almost white",
+    "atmosphere": "fine windborne dust drifting low across the plain, dry grass tilting one direction, no shade anywhere, midday silence",
+    "symbolicElements": ["a small cattle ear-tag held loosely in the figure's right hand", "three circling vultures forming a slow triangle above"],
+    "titleTypography": {
+      "fontFamily": "Acumin Variable Condensed",
+      "weight": "Bold",
+      "size": "huge",
+      "position": "upper third across the sky, centered",
+      "color": "dried-blood rust red",
+      "treatment": "all caps condensed sans, tight tracking, slightly weathered edges"
+    },
+    "castTypography": {
+      "position": "below title",
+      "style": "small caps, tracking-wide, dot separators",
+      "color": "sun-bleached bone",
+      "size": "small"
+    },
+    "referencesToChannel": ["No Country for Old Men 2007 Miramax", "Jauja 2014 Cinema Guild", "Zama 2017 Strand Releasing"]
+  }
+}
