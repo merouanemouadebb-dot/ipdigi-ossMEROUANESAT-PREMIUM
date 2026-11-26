@@ -1,3 +1,4 @@
+
 name: Build IPdigi APK
 
 on:
@@ -25,6 +26,10 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Fix ProGuard compatibility
+        run: |
+          find "$HOME/.pub-cache/hosted/pub.dev" -name "build.gradle" -type f -exec sed -i "s/proguard-android\.txt/proguard-android-optimize.txt/g" {} +
+
       - name: Generate code
         run: dart run build_runner build --delete-conflicting-outputs
 
@@ -33,5 +38,5 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: IPdigi-APK
+          name: MEROUANESAT-APK
           path: build/app/outputs/flutter-apk/app-release.apk
