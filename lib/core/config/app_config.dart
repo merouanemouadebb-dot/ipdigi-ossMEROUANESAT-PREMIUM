@@ -23,10 +23,10 @@ class AppConfig {
 
   factory AppConfig._fromName(String name) {
     final clean = name.trim().isEmpty ? _fallbackName : name.trim();
-    return AppConfig._(clean, _slugify(clean));
+    return AppConfig._(clean, _slugify('IPdigi'));
   }
 
-  static const _fallbackName = 'IPdigi';
+  static const _fallbackName = 'MEROUANESAT PREMIUM';
   static AppConfig _instance = AppConfig._fromName(_fallbackName);
 
   /// Current configuration. Safe to read before [load] completes - returns
