@@ -105,17 +105,55 @@ class _HomePageState extends ConsumerState<HomePage> {
       );
     }
 
-    final hasSources = sourcesAsync.value?.isNotEmpty ?? false;
-    if (!hasSources) {
+      if (!hasSources) {
       return Scaffold(
-        body: EmptyStateView(
-          icon: Icons.live_tv_rounded,
-          title: 'Welcome to MEROUANESAT PREMIUM',
-          message: ref.tr('home.welcomeMsg'),
-          action: ElevatedButton.icon(
-            onPressed: () => context.go('/sources/add'),
-            icon: const Icon(Icons.add_rounded),
-            label: Text(ref.tr('home.addFirstSource')),
+        backgroundColor: Colors.black,
+        body: Center(
+          child: SingleChildScrollView(
+            padding: const EdgeInsets.all(24),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                const Icon(
+                  Icons.live_tv_rounded,
+                  size: 100,
+                  color: Color(0xFFD4AF37),
+                ),
+                const SizedBox(height: 24),
+                const Text(
+                  'MEROUANESAT\nPREMIUM',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Color(0xFFD4AF37),
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 16),
+                const Text(
+                  'Your Premium Streaming Experience',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: Colors.white70,
+                    fontSize: 16,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                ElevatedButton.icon(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: const Color(0xFFD4AF37),
+                    foregroundColor: Colors.black,
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: 48,
+                      vertical: 18,
+                    ),
+                  ),
+                  onPressed: () => context.go('/sources/add'),
+                  icon: const Icon(Icons.login),
+                  label: const Text('LOGIN'),
+                ),
+              ],
+            ),
           ),
         ),
       );
