@@ -20,7 +20,14 @@ class SourcesListPage extends ConsumerWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(ref.tr('sources.title')),
+        title: const Text(
+  'MEROUANESAT PREMIUM',
+  style: TextStyle(
+    fontSize: 18,
+    fontWeight: FontWeight.bold,
+    color: Colors.amber,
+  ),
+),
         actions: [
           IconButton(
             tooltip: ref.tr('sources.add'),
