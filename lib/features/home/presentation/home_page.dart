@@ -105,7 +105,8 @@ class _HomePageState extends ConsumerState<HomePage> {
       );
     }
 
-      if (!hasSources) {
+      final hasSources = sourcesAsync.value?.isNotEmpty ?? false;
+if (!hasSources) {
       return Scaffold(
         backgroundColor: Colors.black,
         body: Center(
