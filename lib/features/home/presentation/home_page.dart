@@ -110,7 +110,7 @@ class _HomePageState extends ConsumerState<HomePage> {
       return Scaffold(
         body: EmptyStateView(
           icon: Icons.live_tv_rounded,
-          title: ref.tr('home.welcome', {'appName': AppConfig.I.appName}),
+          title: 'Welcome to MEROUANESAT PREMIUM',
           message: ref.tr('home.welcomeMsg'),
           action: ElevatedButton.icon(
             onPressed: () => context.go('/sources/add'),
