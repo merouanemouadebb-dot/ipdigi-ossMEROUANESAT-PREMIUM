@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppColors {
-  // Brand accent - teal
-  static const Color accent = Color(0xFF14B8A6); // teal-500
-  static const Color accentHover = Color(0xFF5EEAD4); // teal-300
-  static const Color accentDeep = Color(0xFF0F766E); // teal-700
+  // MEROUANESAT PREMIUM - Gold
+static const Color accent = Color(0xFFD4AF37);
+static const Color accentHover = Color(0xFFFFD700);
+static const Color accentDeep = Color(0xFFB8860B);
 
   // Dark theme surface palette.
   static const Color background = Color(0xFF0B0B0F);
