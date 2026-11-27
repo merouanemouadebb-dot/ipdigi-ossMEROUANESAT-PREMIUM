@@ -105,60 +105,162 @@ class _HomePageState extends ConsumerState<HomePage> {
       );
     }
 
-      final hasSources = sourcesAsync.value?.isNotEmpty ?? false;
-if (!hasSources) {
+    final hasSources = sourcesAsync.value?.isNotEmpty ?? false;
+    if (!hasSources) {
+      const gold = Color(0xFFD4AF37);
+
       return Scaffold(
         backgroundColor: Colors.black,
-        body: Center(
-          child: SingleChildScrollView(
-            padding: const EdgeInsets.all(24),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                const Icon(
-                  Icons.live_tv_rounded,
-                  size: 100,
-                  color: Color(0xFFD4AF37),
-                ),
-                const SizedBox(height: 24),
-                const Text(
-                  'MEROUANESAT\nPREMIUM',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Color(0xFFD4AF37),
-                    fontSize: 28,
-                    fontWeight: FontWeight.bold,
-                  ),
-                ),
-                const SizedBox(height: 16),
-                const Text(
-                  'Your Premium Streaming Experience',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    color: Colors.white70,
-                    fontSize: 16,
-                  ),
-                ),
-                const SizedBox(height: 32),
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFD4AF37),
-                    foregroundColor: Colors.black,
-                    padding: const EdgeInsets.symmetric(
-                      horizontal: 48,
-                      vertical: 18,
-                    ),
-                  ),
-                  onPressed: () => context.go('/sources/add'),
-                  icon: const Icon(Icons.login),
-                  label: const Text('LOGIN'),
-                ),
+        body: Container(
+          decoration: const BoxDecoration(
+            gradient: RadialGradient(
+              center: Alignment(0, -0.6),
+              radius: 1.1,
+              colors: [
+                Color(0xFF493919),
+                Color(0xFF101010),
+                Colors.black,
               ],
+            ),
+          ),
+          child: SafeArea(
+            child: Center(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.all(24),
+                child: ConstrainedBox(
+                  constraints: const BoxConstraints(
+                    maxWidth: 480,
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Container(
+                        width: 112,
+                        height: 112,
+                        decoration: BoxDecoration(
+                          color: const Color(0xFF101010),
+                          borderRadius: BorderRadius.circular(28),
+                          border: Border.all(color: gold, width: 2),
+                          boxShadow: const [
+                            BoxShadow(
+                              color: Color(0x40D4AF37),
+                              blurRadius: 40,
+                            ),
+                          ],
+                        ),
+                        child: const Icon(
+                          Icons.play_arrow_rounded,
+                          color: gold,
+                          size: 80,
+                        ),
+                      ),
+                      const SizedBox(height: 30),
+                      const FittedBox(
+                        fit: BoxFit.scaleDown,
+                        child: Text(
+                          'MEROUANESAT',
+                          style: TextStyle(
+                            color: gold,
+                            fontSize: 34,
+                            fontWeight: FontWeight.w900,
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 8),
+                      const Text(
+                        'P R E M I U M',
+                        style: TextStyle(
+                          color: gold,
+                          fontSize: 20,
+                        ),
+                      ),
+                      const SizedBox(height: 22),
+                      const Text(
+                        'Your World of Entertainment',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white70,
+                          fontSize: 15,
+                        ),
+                      ),
+                      const SizedBox(height: 36),
+                      const Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          Column(
+                            children: [
+                              Icon(Icons.live_tv_rounded,
+                                color: gold, size: 32),
+                              SizedBox(height: 8),
+                              Text('LIVE TV',
+                                style: TextStyle(color: Colors.white70)),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Icon(Icons.movie_rounded,
+                                color: gold, size: 32),
+                              SizedBox(height: 8),
+                              Text('MOVIES',
+                                style: TextStyle(color: Colors.white70)),
+                            ],
+                          ),
+                          Column(
+                            children: [
+                              Icon(Icons.tv_rounded,
+                                color: gold, size: 32),
+                              SizedBox(height: 8),
+                              Text('SERIES',
+                                style: TextStyle(color: Colors.white70)),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 40),
+                      SizedBox(
+                        width: double.infinity,
+                        height: 58,
+                        child: ElevatedButton.icon(
+                          autofocus: true,
+                          style: ElevatedButton.styleFrom(
+                            backgroundColor: gold,
+                            foregroundColor: Colors.black,
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(14),
+                            ),
+                          ),
+                          onPressed: () => context.go('/sources/add'),
+                          icon: const Icon(Icons.login_rounded),
+                          label: const Text(
+                            'LOGIN',
+                            style: TextStyle(
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold,
+                              letterSpacing: 2,
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(height: 22),
+                      const Text(
+                        'PREMIUM STREAMING EXPERIENCE',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white38,
+                          fontSize: 10,
+                          letterSpacing: 1.5,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
             ),
           ),
         ),
       );
     }
+
 
     final movies = moviesAsync.value ?? const <MediaItem>[];
     final series = seriesAsync.value ?? const <MediaItem>[];
@@ -209,7 +311,8 @@ if (!hasSources) {
     // list; the row isn't added then.
     final personalizedAsync = ref.watch(personalizedRecommendationsProvider);
     final personalizedItems = personalizedAsync.value ?? const [];
-    if (personalizedItems.isNotEmpty) {
+    if (personalizedItems.i  
+      sNotEmpty) {
       final items = personalizedItems.take(20).map((r) => r.item).toList();
       slivers.add(
         SliverToBoxAdapter(
