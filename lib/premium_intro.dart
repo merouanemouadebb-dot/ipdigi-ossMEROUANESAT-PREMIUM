@@ -1,3 +1,4 @@
+
 import 'dart:async';
 import 'dart:math' as math;
 
@@ -21,9 +22,9 @@ class PremiumIntro extends StatefulWidget {
 }
 
 class _PremiumIntroState extends State<PremiumIntro>
-    with SingleTickerProviderStateMixin,
-         WidgetsBindingObserver {
+    with SingleTickerProviderStateMixin {
   late final AnimationController _controller;
+
   final _finished = Completer<void>();
 
   bool _visible = true;
@@ -34,11 +35,10 @@ class _PremiumIntroState extends State<PremiumIntro>
   void initState() {
     super.initState();
 
-    WidgetsBinding.instance.addObserver(this);
-
     _controller = AnimationController(
       vsync: this,
       duration: const Duration(seconds: 10),
+      animationBehavior: AnimationBehavior.preserve,
     );
 
     _controller.addStatusListener((status) {
@@ -54,11 +54,6 @@ class _PremiumIntroState extends State<PremiumIntro>
 
     if (_started) return;
     _started = true;
-
-    if (MediaQuery.disableAnimationsOf(context)) {
-      _visible = false;
-      return;
-    }
 
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || !_visible) return;
@@ -130,17 +125,7 @@ class _PremiumIntroState extends State<PremiumIntro>
   }
 
   @override
-  void didChangeAppLifecycleState(
-    AppLifecycleState state,
-  ) {
-    if (state == AppLifecycleState.paused) {
-      _finish();
-    }
-  }
-
-  @override
   void dispose() {
-    WidgetsBinding.instance.removeObserver(this);
     _fallback?.cancel();
 
     if (!_finished.isCompleted) {
