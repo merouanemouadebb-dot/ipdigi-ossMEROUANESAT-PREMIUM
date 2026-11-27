@@ -1,19 +1,19 @@
+
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
+import '../../../core/config/platform_info.dart';
 import '../../../core/metadata/tmdb_provider.dart';
 import '../../../core/theme/app_theme.dart';
 import '../../sources/domain/media_item.dart';
 
-/// Horizontal 16:9 backdrop carousel that sits between the poster rows on
-/// the home page. Breaks up the uniform poster flow - uses the TMDB
-/// backdrop as a cover, with the title and rating shown in the bottom
-/// corner. When there is no backdrop it falls back to the poster cover.
 class BackdropRow extends ConsumerWidget {
   final String title;
   final List<MediaItem> items;
   final void Function(MediaItem) onTap;
+
   const BackdropRow({
     super.key,
     required this.title,
@@ -23,35 +23,76 @@ class BackdropRow extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    if (items.isEmpty) return const SizedBox.shrink();
+    if (items.isEmpty) {
+      return const SizedBox.shrink();
+    }
+
+    final w = MediaQuery.sizeOf(context).width;
+    final mobile = !PlatformInfo.isTv && w < 768;
+
+    final cardWidth = mobile
+        ? (w * 0.64).clamp(170.0, 280.0).toDouble()
+        : 320.0;
+
+    final cardHeight = cardWidth * 9 / 16;
+    final padding = mobile ? 16.0 : 24.0;
+
     return Padding(
-      padding: const EdgeInsets.only(top: 18),
+      padding: const EdgeInsets.only(top: 14),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.fromLTRB(24, 0, 24, 10),
-            child: Text(
-              title,
-              style: const TextStyle(
-                color: AppColors.textPrimary,
-                fontSize: 18,
-                fontWeight: FontWeight.w700,
-                letterSpacing: -0.3,
-              ),
+            padding: EdgeInsets.fromLTRB(
+              padding, 0, padding, 6,
+            ),
+            child: Row(
+              children: [
+                Container(
+                  width: 3,
+                  height: 19,
+                  decoration: BoxDecoration(
+                    color: AppColors.accent,
+                    borderRadius: BorderRadius.circular(3),
+                  ),
+                ),
+                const SizedBox(width: 8),
+                Expanded(
+                  child: Text(
+                    title,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: TextStyle(
+                      color: AppColors.textPrimary,
+                      fontSize: mobile ? 16 : 18,
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
           SizedBox(
-            height: 198,
+            height: cardHeight + 18,
             child: ListView.separated(
               scrollDirection: Axis.horizontal,
-              padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 9),
+              padding: EdgeInsets.symmetric(
+                horizontal: padding,
+                vertical: 9,
+              ),
               clipBehavior: Clip.none,
+              cacheExtent: mobile ? 300 : 600,
               itemCount: items.length,
-              separatorBuilder: (_, _) => const SizedBox(width: 14),
+              separatorBuilder: (_, _) =>
+                  const SizedBox(width: 12),
               itemBuilder: (_, i) {
-                final m = items[i];
-                return _BackdropTile(item: m, onTap: () => onTap(m));
+                final item = items[i];
+
+                return _BackdropTile(
+                  item: item,
+                  width: cardWidth,
+                  onTap: () => onTap(item),
+                );
               },
             ),
           ),
@@ -63,159 +104,216 @@ class BackdropRow extends ConsumerWidget {
 
 class _BackdropTile extends ConsumerStatefulWidget {
   final MediaItem item;
+  final double width;
   final VoidCallback onTap;
-  const _BackdropTile({required this.item, required this.onTap});
+
+  const _BackdropTile({
+    required this.item,
+    required this.width,
+    required this.onTap,
+  });
 
   @override
-  ConsumerState<_BackdropTile> createState() => _BackdropTileState();
+  ConsumerState<_BackdropTile> createState() =>
+      _BackdropTileState();
 }
 
-class _BackdropTileState extends ConsumerState<_BackdropTile> {
+class _BackdropTileState
+    extends ConsumerState<_BackdropTile> {
   bool _hover = false;
+  bool _focus = false;
 
   @override
   Widget build(BuildContext context) {
-    final tmdb = ref
-        .watch(tmdbDetailProvider(TmdbLookupArgs.fromItem(widget.item)))
-        .value;
-    final backdrop = (tmdb?.backdropUrl?.isNotEmpty ?? false)
-        ? tmdb!.backdropUrl
-        : (widget.item.backdropUrl?.isNotEmpty ?? false)
-        ? widget.item.backdropUrl
-        : tmdb?.posterUrl ?? widget.item.logoUrl;
-    final cleanTitle = widget.item.displayName
+    final tmdb = ref.watch(
+      tmdbDetailProvider(
+        TmdbLookupArgs.fromItem(widget.item),
+      ),
+    ).value;
+
+    String? image;
+
+    for (final url in [
+      tmdb?.backdropUrl,
+      widget.item.backdropUrl,
+      tmdb?.posterUrl,
+      widget.item.logoUrl,
+    ]) {
+      if (url != null && url.trim().isNotEmpty) {
+        image = url;
+        break;
+      }
+    }
+
+    final title = widget.item.displayName
         .replaceAll(RegExp(r'\s+'), ' ')
         .trim();
-    final ratingLabel =
-        (widget.item.rating != null &&
-            widget.item.rating! > 0 &&
-            widget.item.rating! < 10)
-        ? '★ ${widget.item.rating!.toStringAsFixed(1)}'
-        : null;
-    final year = widget.item.year?.toString();
+
+    final rating = widget.item.rating;
+    final year = widget.item.year;
+    final active = _hover || _focus;
 
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       onEnter: (_) => setState(() => _hover = true),
       onExit: (_) => setState(() => _hover = false),
-      child: GestureDetector(
-        onTap: widget.onTap,
-        child: AnimatedScale(
-          scale: _hover ? 1.04 : 1.0,
-          duration: const Duration(milliseconds: 160),
-          curve: Curves.easeOutCubic,
-          child: AnimatedContainer(
-            duration: const Duration(milliseconds: 160),
-            width: 320,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              // Border color doesn't change on hover - scale + neutral shadow.
-              boxShadow: _hover
-                  ? [
-                      BoxShadow(
-                        color: Colors.black.withValues(alpha: 0.45),
-                        blurRadius: 20,
-                        offset: const Offset(0, 6),
-                      ),
-                    ]
-                  : null,
-            ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(9),
-              child: Stack(
-                fit: StackFit.expand,
-                children: [
-                  Container(color: AppColors.surfaceElevated),
-                  if (backdrop != null && backdrop.isNotEmpty)
-                    CachedNetworkImage(
-                      imageUrl: backdrop,
-                      fit: BoxFit.cover,
-                      // Tile is 320dp wide; 640px is enough for 2x retina.
-                      // Without cacheWidth the original TMDB backdrop (>1280px)
-                      // got decoded, causing scroll jank/memory pressure on TV.
-                      memCacheWidth: 640,
-                      maxWidthDiskCache: 640,
-                      placeholder: (_, _) => const SizedBox.shrink(),
-                      errorWidget: (_, _, _) => const SizedBox.shrink(),
+      child: Focus(
+        onFocusChange: (value) =>
+            setState(() => _focus = value),
+        onKeyEvent: (node, event) {
+          if (event is KeyDownEvent &&
+              (event.logicalKey ==
+                      LogicalKeyboardKey.select ||
+                  event.logicalKey ==
+                      LogicalKeyboardKey.enter ||
+                  event.logicalKey ==
+                      LogicalKeyboardKey.gameButtonA)) {
+            widget.onTap();
+            return KeyEventResult.handled;
+          }
+
+          return KeyEventResult.ignored;
+        },
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: AnimatedScale(
+            scale: active ? 1.03 : 1.0,
+            duration: const Duration(milliseconds: 150),
+            child: SizedBox(
+              width: widget.width,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(12),
+                child: Stack(
+                  fit: StackFit.expand,
+                  children: [
+                    const ColoredBox(
+                      color: AppColors.surfaceElevated,
                     ),
-                  // Bottom gradient - contrast for the title
-                  Container(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: Alignment.bottomCenter,
-                        end: Alignment.topCenter,
-                        colors: [
-                          Colors.black.withValues(alpha: 0.92),
-                          Colors.black.withValues(alpha: 0.0),
-                        ],
-                        stops: const [0, 0.6],
+
+                    if (image != null)
+                      CachedNetworkImage(
+                        imageUrl: image,
+                        fit: BoxFit.cover,
+                        memCacheWidth: 640,
+                        maxWidthDiskCache: 640,
+                        placeholder: (_, _) =>
+                            const SizedBox.shrink(),
+                        errorWidget: (_, _, _) =>
+                            const _ImageFallback(),
+                      )
+                    else
+                      const _ImageFallback(),
+
+                    const DecoratedBox(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Color(0xEE000000),
+                            Color(0x00000000),
+                          ],
+                          stops: [0.0, 0.75],
+                        ),
                       ),
                     ),
-                  ),
-                  // Rating in the top-right
-                  if (ratingLabel != null)
-                    Positioned(
-                      top: 10,
-                      right: 10,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 7,
-                          vertical: 3,
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.black.withValues(alpha: 0.55),
-                          borderRadius: BorderRadius.circular(4),
-                        ),
-                        child: Text(
-                          ratingLabel,
-                          style: const TextStyle(
-                            color: Colors.amber,
-                            fontSize: 11,
-                            fontWeight: FontWeight.w800,
+
+                    if (rating != null &&
+                        rating > 0 &&
+                        rating <= 10)
+                      Positioned(
+                        top: 8,
+                        right: 8,
+                        child: Container(
+                          padding: const EdgeInsets.symmetric(
+                            horizontal: 6,
+                            vertical: 3,
                           ),
-                        ),
-                      ),
-                    ),
-                  // Bottom-left: title + year
-                  Positioned(
-                    left: 14,
-                    right: 14,
-                    bottom: 12,
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        if (year != null) ...[
-                          Text(
-                            year,
+                          decoration: BoxDecoration(
+                            color: Colors.black87,
+                            borderRadius:
+                                BorderRadius.circular(5),
+                          ),
+                          child: Text(
+                            '★ ${rating.toStringAsFixed(1)}',
                             style: const TextStyle(
-                              color: AppColors.textTertiary,
+                              color: AppColors.accent,
                               fontSize: 11,
-                              fontWeight: FontWeight.w700,
-                              letterSpacing: 0.5,
+                              fontWeight: FontWeight.w800,
                             ),
                           ),
-                          const SizedBox(height: 2),
+                        ),
+                      ),
+
+                    Positioned(
+                      left: 10,
+                      right: 10,
+                      bottom: 10,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        crossAxisAlignment:
+                            CrossAxisAlignment.start,
+                        children: [
+                          if (year != null)
+                            Text(
+                              '$year',
+                              style: const TextStyle(
+                                color: AppColors.accent,
+                                fontSize: 11,
+                                fontWeight: FontWeight.w700,
+                              ),
+                            ),
+                          Text(
+                            title,
+                            maxLines: 2,
+                            overflow: TextOverflow.ellipsis,
+                            style: const TextStyle(
+                              color: Colors.white,
+                              fontSize: 13,
+                              fontWeight: FontWeight.w800,
+                              height: 1.15,
+                            ),
+                          ),
                         ],
-                        Text(
-                          cleanTitle,
-                          maxLines: 2,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            color: Colors.white,
-                            fontSize: 15,
-                            fontWeight: FontWeight.w800,
-                            height: 1.15,
+                      ),
+                    ),
+
+                    if (_focus)
+                      Positioned.fill(
+                        child: IgnorePointer(
+                          child: DecoratedBox(
+                            decoration: BoxDecoration(
+                              border: Border.all(
+                                color: AppColors.accent,
+                                width: 3,
+                              ),
+                              borderRadius:
+                                  BorderRadius.circular(12),
+                            ),
                           ),
                         ),
-                      ],
-                    ),
-                  ),
-                ],
+                      ),
+                  ],
+                ),
               ),
             ),
           ),
         ),
+      ),
+    );
+  }
+}
+
+class _ImageFallback extends StatelessWidget {
+  const _ImageFallback();
+
+  @override
+  Widget build(BuildContext context) {
+    return const Center(
+      child: Icon(
+        Icons.movie_outlined,
+        color: AppColors.accent,
+        size: 36,
       ),
     );
   }
