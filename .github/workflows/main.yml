@@ -1,8 +1,9 @@
+
 name: Build APK
 
 on:
   push:
-    branches: [ "main" ]
+    branches: ["main"]
   workflow_dispatch:
 
 jobs:
@@ -28,11 +29,18 @@ jobs:
       - name: Install dependencies
         run: flutter pub get
 
+      - name: Fix ProGuard compatibility
+        run: |
+          find "$HOME/.pub-cache/hosted/pub.dev" android \
+            -type f \
+            \( -name "build.gradle" -o -name "build.gradle.kts" \) \
+            -exec sed -i 's/proguard-android\.txt/proguard-android-optimize.txt/g' {} +
+
       - name: Generate code
         run: dart run build_runner build --delete-conflicting-outputs
 
       - name: Build APK
-        run: flutter build apk --release
+        run: flutter build apk --release --android-skip-build-dependency-validation
 
       - name: Upload APK artifact
         uses: actions/upload-artifact@v4
