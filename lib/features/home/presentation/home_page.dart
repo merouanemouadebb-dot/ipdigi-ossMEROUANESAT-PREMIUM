@@ -311,8 +311,8 @@ class _HomePageState extends ConsumerState<HomePage> {
     // list; the row isn't added then.
     final personalizedAsync = ref.watch(personalizedRecommendationsProvider);
     final personalizedItems = personalizedAsync.value ?? const [];
-    if (personalizedItems.i  
-      sNotEmpty) {
+    if (personalizedItems.isNotEmpty) {
+      
       final items = personalizedItems.take(20).map((r) => r.item).toList();
       slivers.add(
         SliverToBoxAdapter(
