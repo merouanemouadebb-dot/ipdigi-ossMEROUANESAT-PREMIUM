@@ -633,8 +633,7 @@ class _BackgroundLayer extends ConsumerWidget {
         if (hasBackdrop)
           ImageFiltered(
             imageFilter: ImageFilter.blur(
-              sigmaX: 6,
-              sigmaY: 6,
+              sigmaX: 0.8, sigmaY: 0.8,
             ),
             child: CachedNetworkImage(
               imageUrl: backdrop,
@@ -649,8 +648,7 @@ class _BackgroundLayer extends ConsumerWidget {
             fallbackPoster.isNotEmpty)
           ImageFiltered(
             imageFilter: ImageFilter.blur(
-              sigmaX: 18,
-              sigmaY: 18,
+              sigmaX: 2.0, sigmaY: 2.0,
             ),
             child: Transform.scale(
               scale: 1.06,

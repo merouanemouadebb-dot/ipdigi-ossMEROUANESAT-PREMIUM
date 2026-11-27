@@ -187,7 +187,10 @@ class _LiveHeroCarouselState extends ConsumerState<LiveHeroCarousel> {
     _ensureRotator(list.length);
 
     return SizedBox(
-      height: _kHeroHeight,
+      height: MediaQuery.sizeOf(context).width < 720
+          ? 232.0 + ((MediaQuery.textScalerOf(context).scale(14) / 14 - 1)
+              * 120).clamp(0.0, 160.0).toDouble()
+          : _kHeroHeight,
       child: Column(
         children: [
           Expanded(
@@ -286,6 +289,85 @@ class _HeroCard extends ConsumerWidget {
     final desc = (p.description ?? '').replaceAll(RegExp(r'\s+'), ' ').trim();
     final palette = _palette(c.categoryName);
     final progress = p.progressAt(now);
+    if (MediaQuery.sizeOf(context).width < 720) {
+      return Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 6),
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: palette,
+            borderRadius: BorderRadius.circular(14),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(12),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Row(children: [
+                  if (c.logoUrl != null) ...[
+                    SizedBox(width: 40, height: 32,
+                      child: CachedNetworkImage(
+                        imageUrl: c.logoUrl!,
+                        fit: BoxFit.contain,
+                        errorWidget: (_, _, _) =>
+                            const Icon(Icons.live_tv))),
+                    const SizedBox(width: 8),
+                  ],
+                  Expanded(child: Text(c.displayName,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(color: Colors.white,
+                      fontSize: 12, fontWeight: FontWeight.w700))),
+                  const SizedBox(width: 6),
+                  Text(ref.tr('live.badge'),
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 11,
+                      fontWeight: FontWeight.w900,
+                      backgroundColor: Colors.redAccent)),
+                ]),
+                const SizedBox(height: 8),
+                Expanded(child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(title, maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(color: Colors.white,
+                      fontSize: 18, fontWeight: FontWeight.w800)),
+                )),
+                if (desc.isNotEmpty)
+                  Flexible(child: Text(desc, maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(color: Colors.white70,
+                      fontSize: 12))),
+                const SizedBox(height: 6),
+                Row(children: [
+                  Expanded(child: ElevatedButton(
+                    onPressed: onPlay,
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.accent,
+                      foregroundColor: Colors.black,
+                      minimumSize: const Size(0, 42),
+                      padding: const EdgeInsets.symmetric(horizontal: 4)),
+                    child: FittedBox(fit: BoxFit.scaleDown,
+                      child: Text(ref.tr('common.watch'))),
+                  )),
+                  const SizedBox(width: 8),
+                  Expanded(child: FittedBox(fit: BoxFit.scaleDown,
+                    child: Text('${_hm(p.start)} – ${_hm(p.stop)}',
+                      style: const TextStyle(color: Colors.white70,
+                        fontSize: 11)))),
+                ]),
+                const SizedBox(height: 6),
+                LinearProgressIndicator(
+                  value: progress,
+                  minHeight: 3,
+                  color: AppColors.accent,
+                  backgroundColor: Colors.black38),
+              ],
+            ),
+          ),
+        ),
+      );
+    }
 
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 8),

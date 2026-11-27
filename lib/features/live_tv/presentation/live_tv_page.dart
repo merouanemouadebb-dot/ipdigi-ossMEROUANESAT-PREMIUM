@@ -108,6 +108,42 @@ class _TabBar extends ConsumerWidget {
     // Hide the "Live TV" title on phone (it wastes the top area); the
     // SegmentedButton takes the whole row. On wide screens: title + tabs.
     final isWide = MediaQuery.of(context).size.width >= 720;
+    if (!isWide && !PlatformInfo.isTv) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(12, 6, 12, 10),
+        child: Row(
+          children: [
+            for (final entry in <(_LiveTab, String)>[
+              (_LiveTab.discover, 'live.tabDiscover'),
+              (_LiveTab.channels, 'live.tabChannels'),
+              (_LiveTab.schedule, 'live.tabSchedule'),
+            ])
+              Expanded(
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 2),
+                  child: TextButton(
+                    onPressed: () => onChanged(entry.$1),
+                    style: TextButton.styleFrom(
+                      backgroundColor: tab == entry.$1
+                          ? AppColors.accent : AppColors.surface,
+                      foregroundColor: tab == entry.$1
+                          ? Colors.black : AppColors.textSecondary,
+                      padding: const EdgeInsets.symmetric(horizontal: 4),
+                      minimumSize: const Size(0, 44),
+                    ),
+                    child: FittedBox(
+                      fit: BoxFit.scaleDown,
+                      child: Text(ref.tr(entry.$2),
+                        style: const TextStyle(fontSize: 13,
+                          fontWeight: FontWeight.w700)),
+                    ),
+                  ),
+                ),
+              ),
+          ],
+        ),
+      );
+    }
     return Container(
       padding: isWide
           ? const EdgeInsets.fromLTRB(24, 14, 24, 12)
@@ -323,16 +359,21 @@ class _ChannelsTab extends ConsumerWidget {
       ),
     ];
 
+    final mobile = !PlatformInfo.isTv &&
+        MediaQuery.sizeOf(context).width < 720;
     return Column(
       children: [
-        LiveHeroCarousel(liveChannels: items),
-        const SizedBox(height: 8),
+        if (!mobile) LiveHeroCarousel(liveChannels: items),
+        if (!mobile) const SizedBox(height: 8),
         Expanded(
           child: CategoryBrowseLayout(
             title: ref.tr('nav.live'),
             items: items,
             itemMaxExtent: 220,
-            itemAspectRatio: 16 / 11,
+            itemAspectRatio: mobile ? 1.0 : 16 / 11,
+            headerSlotBuilder: mobile
+                ? (context, selection) => LiveHeroCarousel(liveChannels: items)
+                : null,
             smartCategories: smart,
             itemBuilder: (context, item) => _ChannelTile(
               item: item,
@@ -484,7 +525,8 @@ class _ChannelTileState extends ConsumerState<_ChannelTile> {
                         const SizedBox(height: 8),
                         Text(
                           widget.item.displayName,
-                          maxLines: 1,
+                          textAlign: TextAlign.center,
+                          maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                           style: const TextStyle(
                             color: AppColors.textPrimary,
