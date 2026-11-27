@@ -431,9 +431,7 @@ class _CategoryBrowseLayoutState extends ConsumerState<CategoryBrowseLayout> {
       onQueryChanged: (v) => setState(() => _query = v),
       // When "All" is selected, group rendered items by country so the user
       // sees the same grouping as the sidebar.
-      groupByCountry: _selectedSmart == null &&
-          _selectedSubCategory == null &&
-          _selectedCountry == null,
+  groupByCountry: false,
       // Make the body groups use the ADAPTIVE parser too (same as the
       // sidebar/chip). Otherwise, on panels with a non-standard separator
       // like "✨", the body dropped everything into "OTHER" via the old static parse.
@@ -687,7 +685,24 @@ class _CategorySheet extends ConsumerWidget {
                   selectedTileColor: AppColors.accent.withValues(alpha: 0.10),
                   onTap: onSelectAll,
                 ),
-                for (final b in buckets) _countrySection(b, locale),
+                
+    for (final b in buckets)
+  if (b.country.isEmpty)
+    for (final e in b.entries)
+      ListTile(
+        leading: const Icon(
+          Icons.folder_rounded,
+          color: AppColors.accent,
+        ),
+        title: Text(e.fullName),
+        trailing: Text('${e.count}'),
+        selected: selectedSub == e.fullName,
+        selectedTileColor:
+            AppColors.accent.withValues(alpha: 0.10),
+        onTap: () => onSelectSub(e.fullName, b.country),
+      )
+  else
+    _countrySection(b, locale),
               ],
             ),
           ),
