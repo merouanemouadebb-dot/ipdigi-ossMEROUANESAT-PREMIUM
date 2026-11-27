@@ -181,13 +181,17 @@ class _AddSourcePageState
         backgroundColor: const Color(0xFF080808),
         foregroundColor: gold,
         centerTitle: true,
-        title: const Text(
-          'MEROUANESAT PREMIUM',
-          style: TextStyle(
-            color: gold,
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1,
+        title: const FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            'MEROUANESAT PREMIUM',
+            maxLines: 1,
+            style: TextStyle(
+              color: gold,
+              fontSize: 16,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1,
+            ),
           ),
         ),
       ),
@@ -284,10 +288,20 @@ class _AddSourcePageState
                           fontSize: 13,
                           fontWeight: FontWeight.bold,
                         ),
+                        labelPadding: const EdgeInsets.symmetric(horizontal: 6),
                         tabs: const [
-                          Tab(text: 'XTREAM'),
-                          Tab(text: 'M3U'),
-                          Tab(text: 'DIRECT'),
+                          Tab(child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text('XTREAM', maxLines: 1),
+                          )),
+                          Tab(child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text('M3U', maxLines: 1),
+                          )),
+                          Tab(child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Text('DIRECT', maxLines: 1),
+                          )),
                         ],
                       ),
                     ),
