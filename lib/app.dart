@@ -5,6 +5,7 @@ import 'dart:math' as math;
 import 'dart:typed_data';
 import 'dart:ui' show AppExitResponse;
 
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:media_kit/media_kit.dart';
@@ -76,7 +77,7 @@ class _IplifeAppState extends ConsumerState<IplifeApp>
       theme: AppTheme.build(isDark),
       routerConfig: router,
       builder: (context, child) {
-        return _PremiumStartupIntro(
+        return _CinemaIntro(
           child: child ?? const SizedBox.shrink(),
         );
       },
@@ -84,44 +85,42 @@ class _IplifeAppState extends ConsumerState<IplifeApp>
   }
 }
 
-// MEROUANESAT PREMIUM CINEMATIC INTRO
+// MEROUANESAT CINEMATIC INTRO V2
 
-class _PremiumStartupIntro extends StatefulWidget {
+const _gold = Color(0xFFD4AF37);
+const _lightGold = Color(0xFFFFE9A3);
+
+class _CinemaIntro extends StatefulWidget {
   final Widget child;
 
-  const _PremiumStartupIntro({
+  const _CinemaIntro({
     required this.child,
   });
 
   @override
-  State<_PremiumStartupIntro> createState() =>
-      _PremiumStartupIntroState();
+  State<_CinemaIntro> createState() =>
+      _CinemaIntroState();
 }
 
-class _PremiumStartupIntroState
-    extends State<_PremiumStartupIntro>
+class _CinemaIntroState extends State<_CinemaIntro>
     with SingleTickerProviderStateMixin {
-  late final AnimationController _animation;
+  late final AnimationController _controller;
 
-  final Completer<void> _stopAudio =
-      Completer<void>();
+  final Completer<void> _stopAudio = Completer<void>();
 
   bool _visible = true;
   bool _started = false;
-
-  static const gold = Color(0xFFD4AF37);
-  static const brightGold = Color(0xFFFFEDB0);
 
   @override
   void initState() {
     super.initState();
 
-    _animation = AnimationController(
+    _controller = AnimationController(
       vsync: this,
-      duration: const Duration(milliseconds: 3200),
+      duration: const Duration(seconds: 8),
     );
 
-    _animation.addStatusListener((status) {
+    _controller.addStatusListener((status) {
       if (status == AnimationStatus.completed) {
         _finish();
       }
@@ -143,23 +142,21 @@ class _PremiumStartupIntroState
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || !_visible) return;
 
-      _animation.forward();
-      unawaited(_playIntroSound());
+      _controller.forward();
+      unawaited(_playMusic());
     });
   }
 
   void _finish() {
     if (!mounted || !_visible) return;
 
-    _animation.stop();
+    _controller.stop();
 
     if (!_stopAudio.isCompleted) {
       _stopAudio.complete();
     }
 
-    setState(() {
-      _visible = false;
-    });
+    setState(() => _visible = false);
   }
 
   @override
@@ -168,30 +165,30 @@ class _PremiumStartupIntroState
       _stopAudio.complete();
     }
 
-    _animation.dispose();
+    _controller.dispose();
     super.dispose();
   }
 
-  // Original cinematic sound generated offline.
-
-  Future<void> _playIntroSound() async {
+  Future<void> _playMusic() async {
     Player? player;
     Directory? folder;
 
     try {
-      final cache = await getTemporaryDirectory();
+      final wav = await compute(_cinematicMusic, 0);
 
-      folder = await cache.createTemp(
-        'merouanesat_intro_',
+      if (!mounted || _stopAudio.isCompleted) return;
+
+      final temp = await getTemporaryDirectory();
+
+      folder = await temp.createTemp(
+        'merouanesat_cinema_',
       );
 
       final file = File(
-        '${folder.path}/premium_intro.wav',
+        '${folder.path}/cinematic_intro.wav',
       );
 
-      await file.writeAsBytes(
-        _generateMusic(),
-      );
+      await file.writeAsBytes(wav);
 
       if (!mounted || _stopAudio.isCompleted) return;
 
@@ -203,116 +200,27 @@ class _PremiumStartupIntroState
         play: false,
       );
 
-      await audio.setVolume(45.0);
+      await audio.setVolume(75.0);
 
       if (!mounted || _stopAudio.isCompleted) return;
 
       await audio.play();
-
       await _stopAudio.future;
     } catch (_) {
-      // Audio errors must never block app startup.
+      // Audio failure must not prevent app startup.
     } finally {
       try {
-        if (player != null) {
-          await player.dispose();
-        }
+        await player?.dispose();
       } catch (_) {}
 
       try {
-        if (folder != null) {
-          await folder.delete(recursive: true);
-        }
+        await folder?.delete(recursive: true);
       } catch (_) {}
     }
   }
 
-  Uint8List _generateMusic() {
-    const sampleRate = 22050;
-    const duration = 2.8;
-    final samples = (sampleRate * duration).round();
-    final data = ByteData(44 + samples * 2);
-
-    void writeText(int offset, String value) {
-      for (int i = 0; i < value.length; i++) {
-        data.setUint8(
-          offset + i,
-          value.codeUnitAt(i),
-        );
-      }
-    }
-
-    writeText(0, 'RIFF');
-    data.setUint32(4, 36 + samples * 2, Endian.little);
-    writeText(8, 'WAVE');
-    writeText(12, 'fmt ');
-    data.setUint32(16, 16, Endian.little);
-    data.setUint16(20, 1, Endian.little);
-    data.setUint16(22, 1, Endian.little);
-    data.setUint32(24, sampleRate, Endian.little);
-    data.setUint32(28, sampleRate * 2, Endian.little);
-    data.setUint16(32, 2, Endian.little);
-    data.setUint16(34, 16, Endian.little);
-    writeText(36, 'data');
-    data.setUint32(40, samples * 2, Endian.little);
-
-    double note(double t, double start, double freq) {
-      final x = t - start;
-
-      if (x < 0) return 0;
-
-      final attack = math.min(1.0, x / 0.16);
-      final decay = math.exp(-x * 1.7);
-
-      return attack * decay * (
-        math.sin(2 * math.pi * freq * x) +
-        0.28 * math.sin(4 * math.pi * freq * x)
-      );
-    }
-
-    for (int i = 0; i < samples; i++) {
-      final t = i / sampleRate;
-
-      final swell =
-          math.sin(math.pi * t / duration);
-
-      final bass =
-          math.sin(2 * math.pi * 55 * t) *
-          swell * 0.14;
-
-      final harmony =
-          note(t, 0.12, 220.0) * 0.12 +
-          note(t, 0.48, 329.63) * 0.10 +
-          note(t, 0.88, 554.37) * 0.08 +
-          note(t, 1.28, 440.0) * 0.10;
-
-      final fade =
-          ((duration - t) / 0.5)
-              .clamp(0.0, 1.0)
-              .toDouble();
-
-      final sample =
-          ((bass + harmony) * fade * 32767)
-              .round()
-              .clamp(-32768, 32767)
-              .toInt();
-
-      data.setInt16(
-        44 + i * 2,
-        sample,
-        Endian.little,
-      );
-    }
-
-    return data.buffer.asUint8List();
-  }
-
-  double _progress(
-    double value,
-    double start,
-    double end,
-  ) {
-    return ((value - start) / (end - start))
+  double _phase(double t, double a, double b) {
+    return ((t - a) / (b - a))
         .clamp(0.0, 1.0)
         .toDouble();
   }
@@ -334,113 +242,126 @@ class _PremiumStartupIntroState
           Material(
             color: Colors.black,
             child: AnimatedBuilder(
-              animation: _animation,
+              animation: _controller,
               builder: (context, _) {
-                final t = _animation.value;
+                final t = _controller.value * 8;
 
-                final reveal = Curves.easeOutCubic
-                    .transform(
-                      _progress(t, 0.04, 0.48),
-                    );
+                final logo = Curves.easeOutCubic.transform(
+                  _phase(t, 1.0, 3.2),
+                );
 
-                final lineProgress = Curves.easeOutCubic
-                    .transform(
-                      _progress(t, 0.20, 0.75),
-                    );
+                final brand = Curves.easeOutCubic.transform(
+                  _phase(t, 2.8, 4.8),
+                );
 
-                final premium = Curves.easeOut
-                    .transform(
-                      _progress(t, 0.38, 0.78),
-                    );
+                final premium = Curves.easeOutCubic.transform(
+                  _phase(t, 5.0, 6.5),
+                );
 
-                final fadeOut =
-                    1 - _progress(t, 0.88, 1.0);
+                final beam = Curves.easeOutCubic.transform(
+                  _phase(t, 3.6, 5.6),
+                );
 
-                final glow =
-                    math.sin(t * math.pi);
+                final fade =
+                    1.0 - _phase(t, 7.3, 8.0);
 
-                final sweep = -3.0 + t * 6.0;
+                final sweep =
+                    -3.0 + _phase(t, 3.2, 6.5) * 6.0;
 
-                return Stack(
-                  fit: StackFit.expand,
-                  children: [
-                    DecoratedBox(
-                      decoration: BoxDecoration(
-                        gradient: RadialGradient(
-                          radius: 0.8,
-                          colors: [
-                            gold.withValues(
-                              alpha: glow * 0.13,
-                            ),
-                            Colors.black,
-                          ],
+                final pulse =
+                    math.sin(t * 1.8).abs();
+
+                return Opacity(
+                  opacity: fade,
+                  child: Stack(
+                    fit: StackFit.expand,
+                    children: [
+                      DecoratedBox(
+                        decoration: BoxDecoration(
+                          gradient: RadialGradient(
+                            radius: 0.85,
+                            colors: [
+                              _gold.withValues(
+                                alpha: 0.10 + logo * 0.10,
+                              ),
+                              Colors.black,
+                            ],
+                          ),
                         ),
                       ),
-                    ),
 
-                    Opacity(
-                      opacity: fadeOut,
-                      child: Center(
+                      CustomPaint(
+                        painter: _GoldParticles(t),
+                      ),
+
+                      Center(
                         child: Padding(
-                          padding:
-                              const EdgeInsets.all(24),
+                          padding: const EdgeInsets.all(24),
                           child: FittedBox(
                             fit: BoxFit.scaleDown,
                             child: SizedBox(
-                              width: 320,
+                              width: 480,
                               child: Column(
                                 mainAxisSize:
                                     MainAxisSize.min,
                                 children: [
                                   Opacity(
-                                    opacity: reveal,
+                                    opacity: logo,
                                     child: Transform.scale(
                                       scale:
-                                          1.12 - reveal * 0.12,
+                                          1.65 - logo * 0.65,
                                       child: Container(
-                                        width: 96,
-                                        height: 96,
+                                        width: 135,
+                                        height: 135,
                                         decoration:
                                             BoxDecoration(
-                                          color: const Color(
-                                            0xFF101010,
-                                          ),
                                           borderRadius:
                                               BorderRadius
-                                                  .circular(24),
+                                                  .circular(34),
+                                          gradient:
+                                              const LinearGradient(
+                                            begin:
+                                                Alignment.topLeft,
+                                            end:
+                                                Alignment.bottomRight,
+                                            colors: [
+                                              Color(0xFF302310),
+                                              Color(0xFF080808),
+                                            ],
+                                          ),
                                           border: Border.all(
-                                            color: gold,
-                                            width: 1.6,
+                                            color: _gold,
+                                            width: 2,
                                           ),
                                           boxShadow: [
                                             BoxShadow(
-                                              color: gold
+                                              color: _gold
                                                   .withValues(
                                                 alpha:
-                                                    glow * 0.35,
+                                                    0.2 + pulse * 0.3,
                                               ),
                                               blurRadius:
-                                                  35 + glow * 25,
-                                              spreadRadius: 2,
+                                                  35 + pulse * 35,
+                                              spreadRadius: 3,
                                             ),
                                           ],
                                         ),
                                         child: const Icon(
                                           Icons.play_arrow_rounded,
-                                          size: 66,
-                                          color: gold,
+                                          color: _lightGold,
+                                          size: 98,
                                         ),
                                       ),
                                     ),
                                   ),
 
-                                  const SizedBox(height: 36),
+                                  const SizedBox(height: 42),
 
                                   Opacity(
-                                    opacity: reveal,
+                                    opacity: brand,
                                     child: Transform.scale(
                                       scale:
-                                          1.15 - reveal * 0.15,
+                                          1.3 - brand * 0.3,
                                       child: ShaderMask(
                                         blendMode:
                                             BlendMode.srcIn,
@@ -455,92 +376,94 @@ class _PremiumStartupIntroState
                                               1,
                                             ),
                                             colors: const [
-                                              Color(0xFF9D721D),
-                                              gold,
-                                              brightGold,
-                                              gold,
-                                              Color(0xFF9D721D),
+                                              Color(0xFF967020),
+                                              _gold,
+                                              _lightGold,
+                                              Colors.white,
+                                              _gold,
+                                              Color(0xFF967020),
                                             ],
                                           ).createShader(rect);
                                         },
-                                        child: const Text(
-                                          'MEROUANESAT',
-                                          maxLines: 1,
-                                          textAlign:
-                                              TextAlign.center,
-                                          style: TextStyle(
-                                            color: Colors.white,
-                                            fontSize: 34,
-                                            fontWeight:
-                                                FontWeight.w900,
-                                            letterSpacing: 0.7,
+                                        child: const FittedBox(
+                                          fit: BoxFit.scaleDown,
+                                          child: Text(
+                                            'MEROUANESAT',
+                                            maxLines: 1,
+                                            style: TextStyle(
+                                              color: Colors.white,
+                                              fontSize: 52,
+                                              fontWeight:
+                                                  FontWeight.w900,
+                                              letterSpacing: 1,
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
 
-                                  const SizedBox(height: 16),
+                                  const SizedBox(height: 22),
 
                                   Container(
-                                    width: 290 * lineProgress,
-                                    height: 2,
+                                    width: 440 * beam,
+                                    height: 3,
                                     decoration: BoxDecoration(
                                       gradient:
                                           const LinearGradient(
                                         colors: [
                                           Colors.transparent,
-                                          gold,
-                                          brightGold,
-                                          gold,
+                                          _gold,
+                                          Colors.white,
+                                          _gold,
                                           Colors.transparent,
                                         ],
                                       ),
                                       boxShadow: [
                                         BoxShadow(
-                                          color: gold.withValues(
-                                            alpha: glow * 0.5,
+                                          color: _gold.withValues(
+                                            alpha: beam * 0.65,
                                           ),
-                                          blurRadius: 16,
+                                          blurRadius: 24,
+                                          spreadRadius: 2,
                                         ),
                                       ],
                                     ),
                                   ),
 
-                                  const SizedBox(height: 20),
+                                  const SizedBox(height: 24),
 
                                   Opacity(
                                     opacity: premium,
                                     child: Transform.translate(
                                       offset: Offset(
                                         0,
-                                        12 * (1 - premium),
+                                        18 * (1 - premium),
                                       ),
                                       child: const Text(
                                         'P R E M I U M',
                                         style: TextStyle(
-                                          color: gold,
-                                          fontSize: 21,
+                                          color: _lightGold,
+                                          fontSize: 28,
                                           fontWeight:
                                               FontWeight.w700,
-                                          letterSpacing: 2,
+                                          letterSpacing: 3,
                                         ),
                                       ),
                                     ),
                                   ),
 
-                                  const SizedBox(height: 30),
+                                  const SizedBox(height: 32),
 
                                   Opacity(
                                     opacity: premium,
                                     child: const Text(
-                                      'THE CINEMA EXPERIENCE',
-                                      textAlign:
-                                          TextAlign.center,
+                                      'THE ULTIMATE CINEMA EXPERIENCE',
+                                      textAlign: TextAlign.center,
                                       style: TextStyle(
-                                        color: Colors.white54,
-                                        fontSize: 10,
-                                        letterSpacing: 2.0,
+                                        color: Colors.white70,
+                                        fontSize: 12,
+                                        letterSpacing: 3,
                                       ),
                                     ),
                                   ),
@@ -550,24 +473,24 @@ class _PremiumStartupIntroState
                           ),
                         ),
                       ),
-                    ),
 
-                    Positioned(
-                      right: 12,
-                      bottom: 12,
-                      child: SafeArea(
-                        child: TextButton(
-                          onPressed: _finish,
-                          child: const Text(
-                            'Skip',
-                            style: TextStyle(
-                              color: Colors.white54,
+                      Positioned(
+                        bottom: 10,
+                        right: 14,
+                        child: SafeArea(
+                          child: TextButton(
+                            onPressed: _finish,
+                            child: const Text(
+                              'Skip',
+                              style: TextStyle(
+                                color: Colors.white54,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             ),
@@ -575,4 +498,240 @@ class _PremiumStartupIntroState
       ],
     );
   }
+}
+
+// Animated golden particles
+
+class _GoldParticles extends CustomPainter {
+  final double time;
+
+  _GoldParticles(this.time);
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final random = math.Random(2026);
+    final paint = Paint();
+
+    for (var i = 0; i < 65; i++) {
+      final x = random.nextDouble() * size.width;
+      final base = random.nextDouble() * size.height;
+      final speed = 12 + random.nextDouble() * 30;
+
+      final y =
+          (base - time * speed) % size.height;
+
+      final radius =
+          0.5 + random.nextDouble() * 1.8;
+
+      final alpha =
+          (0.12 +
+                  math.sin(time * 2 + i).abs() * 0.35)
+              .clamp(0.0, 1.0)
+              .toDouble();
+
+      paint.color = _gold.withValues(alpha: alpha);
+
+      canvas.drawCircle(
+        Offset(x, y),
+        radius,
+        paint,
+      );
+    }
+  }
+
+  @override
+  bool shouldRepaint(covariant _GoldParticles old) {
+    return old.time != time;
+  }
+}
+
+// Original cinematic soundtrack.
+// Bass, percussion, rising chords and metallic notes.
+
+Uint8List _cinematicMusic(int seed) {
+  const rate = 22050;
+  const duration = 8.0;
+  const tau = math.pi * 2;
+
+  final samples = (rate * duration).round();
+  final data = ByteData(44 + samples * 2);
+
+  void text(int offset, String value) {
+    for (var i = 0; i < value.length; i++) {
+      data.setUint8(offset + i, value.codeUnitAt(i));
+    }
+  }
+
+  text(0, 'RIFF');
+  data.setUint32(4, 36 + samples * 2, Endian.little);
+  text(8, 'WAVE');
+  text(12, 'fmt ');
+  data.setUint32(16, 16, Endian.little);
+  data.setUint16(20, 1, Endian.little);
+  data.setUint16(22, 1, Endian.little);
+  data.setUint32(24, rate, Endian.little);
+  data.setUint32(28, rate * 2, Endian.little);
+  data.setUint16(32, 2, Endian.little);
+  data.setUint16(34, 16, Endian.little);
+  text(36, 'data');
+  data.setUint32(40, samples * 2, Endian.little);
+
+  final random = math.Random(seed + 2026);
+
+  const drums = [
+    0.5, 1.4, 2.1, 2.8,
+    3.3, 3.8, 4.3, 4.8,
+    5.3, 5.7, 6.1, 6.6,
+  ];
+
+  const chords = [
+    [110.0, 130.81, 164.81],
+    [87.31, 130.81, 174.61],
+    [98.0, 146.83, 196.0],
+    [110.0, 164.81, 220.0],
+  ];
+
+  const melody = [
+    220.0, 261.63, 329.63, 392.0,
+    440.0, 523.25, 659.25, 880.0,
+  ];
+
+  for (var i = 0; i < samples; i++) {
+    final t = i / rate;
+    final noise = random.nextDouble() * 2 - 1;
+
+    final rise =
+        (t / 6.5).clamp(0.0, 1.0).toDouble();
+
+    final fadeIn =
+        (t / 0.35).clamp(0.0, 1.0).toDouble();
+
+    final fadeOut =
+        ((duration - t) / 1.0)
+            .clamp(0.0, 1.0)
+            .toDouble();
+
+    double value = 0;
+
+    // Deep cinematic bass.
+
+    value += math.sin(tau * 55 * t) *
+        (0.08 + rise * 0.10);
+
+    value += math.sin(tau * 27.5 * t) *
+        rise * 0.06;
+
+    // Layered harmonic pads.
+
+    final chordIndex =
+        (t / 2).floor().clamp(0, 3).toInt();
+
+    final chordTime = t % 2.0;
+
+    final chordEnvelope =
+        math.sin(math.pi * chordTime / 2.0);
+
+    for (final f in chords[chordIndex]) {
+      value += (
+        math.sin(tau * f * t) +
+        0.35 * math.sin(tau * f * 2 * t) +
+        0.18 * math.sin(tau * f * 3 * t)
+      ) * chordEnvelope * (0.035 + rise * 0.02);
+    }
+
+    // Cinematic percussion.
+
+    for (final hit in drums) {
+      final x = t - hit;
+
+      if (x >= 0 && x < 0.55) {
+        final envelope = math.exp(-x * 10);
+
+        final phase = tau * (
+          45 * x +
+          5 * (1 - math.exp(-x * 18))
+        );
+
+        value += math.sin(phase) *
+            envelope * (0.18 + rise * 0.13);
+
+        value += noise *
+            math.exp(-x * 24) * 0.055;
+      }
+    }
+
+    // Rising metallic arpeggio.
+
+    for (var n = 0; n < melody.length; n++) {
+      final start = 1.7 + n * 0.62;
+      final x = t - start;
+
+      if (x >= 0 && x < 1.5) {
+        final attack =
+            (x / 0.045).clamp(0.0, 1.0).toDouble();
+
+        final decay = math.exp(-x * 3.0);
+        final f = melody[n];
+
+        value += (
+          math.sin(tau * f * x) +
+          0.30 * math.sin(tau * f * 2 * x) +
+          0.12 * math.sin(tau * f * 4 * x)
+        ) * attack * decay * 0.10;
+      }
+    }
+
+    // Rising sound effect.
+
+    if (t > 3.2 && t < 6.6) {
+      final x = t - 3.2;
+
+      final envelope =
+          math.sin(math.pi * x / 3.4);
+
+      value += noise * envelope * 0.035;
+
+      value += math.sin(
+        tau * (80 * x + 65 * x * x),
+      ) * envelope * 0.035;
+    }
+
+    // Final cinematic impact.
+
+    final finalHit = t - 6.6;
+
+    if (finalHit >= 0) {
+      final envelope =
+          math.exp(-finalHit * 2.8);
+
+      value += math.sin(tau * 42 * finalHit) *
+          envelope * 0.30;
+
+      value += noise *
+          math.exp(-finalHit * 12) * 0.13;
+
+      for (final f in [110.0, 164.81, 220.0, 440.0]) {
+        value += math.sin(tau * f * finalHit) *
+            envelope * 0.045;
+      }
+    }
+
+    // Soft limiting to reduce clipping.
+
+    value = value / (1 + value.abs() * 0.5);
+    value *= fadeIn * fadeOut;
+
+    final sample = (value * 32767)
+        .round()
+        .clamp(-32768, 32767)
+        .toInt();
+
+    data.setInt16(
+      44 + i * 2,
+      sample,
+      Endian.little,
+    );
+  }
+
+  return data.buffer.asUint8List();
 }
