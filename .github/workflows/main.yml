@@ -133,27 +133,42 @@ jobs:
           from pathlib import Path
 
           expected = os.environ["EXPECTED_SHA256"].lower()
-
           report = Path("signature.txt").read_text()
 
+          pattern = (
+              r"^[ \t]*(?:V\d+(?:\.\d+)?[ \t]+)?"
+              r"Signer(?:[ \t]+#\d+)?[ \t]*:?"
+              r"[ \t]+certificate SHA-256 digest:"
+              r"\s*([0-9a-f:]+)[ \t]*$"
+          )
+
           digests = re.findall(
-              r"^\s*Signer #\d+ certificate SHA-256 digest:\s*([0-9a-f:]+)\s*$",
+              pattern,
               report,
               re.MULTILINE | re.IGNORECASE
           )
 
-          actual = [
+          actual = {
               value.replace(":", "").lower()
               for value in digests
-          ]
+          }
 
           print("Expected SHA256:", expected)
           print("Actual SHA256:", actual)
 
-          if actual != [expected]:
+          count = re.search(
+              r"^Number of signers:\s*(\d+)",
+              report,
+              re.MULTILINE
+          )
+
+          if not count or int(count.group(1)) != 1:
+              raise SystemExit("ERROR: Unexpected number of signers")
+
+          if actual != {expected}:
               raise SystemExit("ERROR: Signing certificate mismatch")
 
-          print("MEROUANESAT SIGNATURE VERIFIED")
+          print("MEROUANESAT SIGNATURE VERIFIED SUCCESSFULLY")
           PY
 
       - name: Remove signing files
