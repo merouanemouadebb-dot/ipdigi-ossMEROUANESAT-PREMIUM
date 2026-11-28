@@ -1,9 +1,9 @@
 
 import 'dart:async';
 import 'dart:math' as math;
-
 import 'package:flutter/material.dart';
 import 'package:media_kit/media_kit.dart';
+import 'core/config/platform_info.dart';
 
 const _gold = Color(0xFFD4AF37);
 const _light = Color(0xFFFFEAB0);
@@ -17,8 +17,7 @@ class PremiumIntro extends StatefulWidget {
   });
 
   @override
-  State<PremiumIntro> createState() =>
-      _PremiumIntroState();
+  State<PremiumIntro> createState() => _PremiumIntroState();
 }
 
 class _PremiumIntroState extends State<PremiumIntro>
@@ -29,7 +28,11 @@ class _PremiumIntroState extends State<PremiumIntro>
 
   bool _visible = true;
   bool _started = false;
+
   Timer? _fallback;
+  Timer? _watchdog;
+
+  bool get _isTv => PlatformInfo.isTv;
 
   @override
   void initState() {
@@ -58,12 +61,32 @@ class _PremiumIntroState extends State<PremiumIntro>
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted || !_visible) return;
 
-      _fallback = Timer(
-        const Duration(seconds: 2),
-        _startAnimation,
-      );
+      if (_isTv) {
+        _startAnimation();
 
-      unawaited(_playMusic());
+        _watchdog = Timer(
+          const Duration(seconds: 13),
+          _finish,
+        );
+
+        unawaited(
+          Future<void>.delayed(
+            const Duration(milliseconds: 150),
+            () async {
+              if (mounted && _visible) {
+                await _playMusic();
+              }
+            },
+          ),
+        );
+      } else {
+        _fallback = Timer(
+          const Duration(seconds: 2),
+          _startAnimation,
+        );
+
+        unawaited(_playMusic());
+      }
     });
   }
 
@@ -74,6 +97,9 @@ class _PremiumIntroState extends State<PremiumIntro>
 
     if (!_controller.isAnimating &&
         _controller.value == 0) {
+      debugPrint(
+        '[PremiumIntro] animation start; tv=$_isTv',
+      );
       _controller.forward();
     }
   }
@@ -94,7 +120,7 @@ class _PremiumIntroState extends State<PremiumIntro>
 
       if (!mounted ||
           !_visible ||
-          _controller.value > 0.08) {
+          _controller.value > (_isTv ? 0.30 : 0.08)) {
         return;
       }
 
@@ -102,7 +128,8 @@ class _PremiumIntroState extends State<PremiumIntro>
 
       await audio.play();
       await _finished.future;
-    } catch (_) {
+    } catch (error) {
+      debugPrint('[PremiumIntro] audio error: $error');
       _startAnimation();
     } finally {
       try {
@@ -115,6 +142,7 @@ class _PremiumIntroState extends State<PremiumIntro>
     if (!mounted || !_visible) return;
 
     _fallback?.cancel();
+    _watchdog?.cancel();
     _controller.stop();
 
     if (!_finished.isCompleted) {
@@ -127,6 +155,7 @@ class _PremiumIntroState extends State<PremiumIntro>
   @override
   void dispose() {
     _fallback?.cancel();
+    _watchdog?.cancel();
 
     if (!_finished.isCompleted) {
       _finished.complete();
@@ -184,11 +213,17 @@ class _PremiumIntroState extends State<PremiumIntro>
     return Stack(
       fit: StackFit.expand,
       children: [
-        ExcludeFocus(
-          excluding: _visible,
-          child: IgnorePointer(
-            ignoring: _visible,
-            child: widget.child,
+        Offstage(
+          offstage: _isTv && _visible,
+          child: TickerMode(
+            enabled: !_isTv || !_visible,
+            child: ExcludeFocus(
+              excluding: _visible,
+              child: IgnorePointer(
+                ignoring: _visible,
+                child: widget.child,
+              ),
+            ),
           ),
         ),
 
@@ -201,6 +236,9 @@ class _PremiumIntroState extends State<PremiumIntro>
               final logo = Curves.easeOutCubic.transform(
                 phase(t, 1.0, 3.4),
               );
+
+              final logoOpacity =
+                  _isTv ? 0.35 + 0.65 * logo : logo;
 
               final name = Curves.easeOutCubic.transform(
                 phase(t, 3.0, 5.1),
@@ -215,9 +253,7 @@ class _PremiumIntroState extends State<PremiumIntro>
               );
 
               final fade = 1 - phase(t, 9.2, 10);
-
-              final sweep =
-                  -3 + phase(t, 4, 8.7) * 6;
+              final sweep = -3 + phase(t, 4, 8.7) * 6;
 
               return Opacity(
                 opacity: fade,
@@ -227,14 +263,16 @@ class _PremiumIntroState extends State<PremiumIntro>
                     fit: StackFit.expand,
                     children: [
                       CustomPaint(
-                        painter: _CinemaLight(t),
+                        painter: _CinemaLight(
+                          t,
+                          lowPower: _isTv,
+                        ),
                       ),
 
                       SafeArea(
                         child: Center(
                           child: Padding(
-                            padding:
-                                const EdgeInsets.all(24),
+                            padding: const EdgeInsets.all(24),
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
                               child: SizedBox(
@@ -245,28 +283,22 @@ class _PremiumIntroState extends State<PremiumIntro>
                                       MainAxisAlignment.center,
                                   children: [
                                     Opacity(
-                                      opacity: logo,
+                                      opacity: logoOpacity,
                                       child: Transform.scale(
-                                        scale:
-                                            2.1 - logo * 1.1,
+                                        scale: 2.1 - logo * 1.1,
                                         child: Container(
                                           width: 142,
                                           height: 142,
-                                          decoration:
-                                              BoxDecoration(
+                                          decoration: BoxDecoration(
                                             borderRadius:
-                                                BorderRadius
-                                                    .circular(36),
+                                                BorderRadius.circular(36),
                                             border: Border.all(
                                               color: _gold,
                                               width: 2.5,
                                             ),
-                                            gradient:
-                                                const LinearGradient(
-                                              begin:
-                                                  Alignment.topLeft,
-                                              end:
-                                                  Alignment.bottomRight,
+                                            gradient: const LinearGradient(
+                                              begin: Alignment.topLeft,
+                                              end: Alignment.bottomRight,
                                               colors: [
                                                 Color(0xFF382810),
                                                 Color(0xFF080808),
@@ -275,11 +307,10 @@ class _PremiumIntroState extends State<PremiumIntro>
                                             ),
                                             boxShadow: [
                                               BoxShadow(
-                                                color: _gold
-                                                    .withValues(
+                                                color: _gold.withValues(
                                                   alpha: logo * .4,
                                                 ),
-                                                blurRadius: 65,
+                                                blurRadius: _isTv ? 24 : 65,
                                                 spreadRadius: 4,
                                               ),
                                             ],
@@ -298,8 +329,7 @@ class _PremiumIntroState extends State<PremiumIntro>
                                     Opacity(
                                       opacity: name,
                                       child: Transform.scale(
-                                        scale:
-                                            1.5 - name * .5,
+                                        scale: 1.5 - name * .5,
                                         child: metalText(
                                           'MEROUANESAT',
                                           65,
@@ -315,8 +345,7 @@ class _PremiumIntroState extends State<PremiumIntro>
                                       width: 630 * beam,
                                       height: 3,
                                       decoration: BoxDecoration(
-                                        gradient:
-                                            const LinearGradient(
+                                        gradient: const LinearGradient(
                                           colors: [
                                             Colors.transparent,
                                             _gold,
@@ -327,11 +356,10 @@ class _PremiumIntroState extends State<PremiumIntro>
                                         ),
                                         boxShadow: [
                                           BoxShadow(
-                                            color:
-                                                _gold.withValues(
+                                            color: _gold.withValues(
                                               alpha: beam * .65,
                                             ),
-                                            blurRadius: 30,
+                                            blurRadius: _isTv ? 12 : 30,
                                           ),
                                         ],
                                       ),
@@ -361,14 +389,12 @@ class _PremiumIntroState extends State<PremiumIntro>
                                       opacity: premium,
                                       child: const Text(
                                         'BEYOND ENTERTAINMENT',
-                                        textDirection:
-                                            TextDirection.ltr,
+                                        textDirection: TextDirection.ltr,
                                         style: TextStyle(
                                           color: Colors.white70,
                                           fontSize: 15,
                                           letterSpacing: 5,
-                                          fontWeight:
-                                              FontWeight.w500,
+                                          fontWeight: FontWeight.w500,
                                         ),
                                       ),
                                     ),
@@ -413,8 +439,12 @@ class _PremiumIntroState extends State<PremiumIntro>
 
 class _CinemaLight extends CustomPainter {
   final double time;
+  final bool lowPower;
 
-  _CinemaLight(this.time);
+  _CinemaLight(
+    this.time, {
+    required this.lowPower,
+  });
 
   @override
   void paint(Canvas canvas, Size size) {
@@ -422,14 +452,12 @@ class _CinemaLight extends CustomPainter {
 
     final center = size.center(Offset.zero);
     final rect = Offset.zero & size;
-
     final radius = size.longestSide * .7;
 
     final impact =
         math.exp(-math.pow((time - 6.4) / .5, 2));
 
-    final glow =
-        (.08 + impact * .18).toDouble();
+    final glow = (.08 + impact * .18).toDouble();
 
     canvas.drawRect(
       rect,
@@ -444,44 +472,31 @@ class _CinemaLight extends CustomPainter {
 
     final random = math.Random(37);
 
-    for (int i = 0; i < 100; i++) {
-      final angle =
-          random.nextDouble() * math.pi * 2;
-
+    for (int i = 0; i < (lowPower ? 30 : 100); i++) {
+      final angle = random.nextDouble() * math.pi * 2;
       final seed = random.nextDouble();
-      final speed =
-          .12 + random.nextDouble() * .18;
-
-      final p =
-          (seed + time * speed) % 1.0;
-
-      final distance =
-          (1 - p) * radius;
+      final speed = .12 + random.nextDouble() * .18;
+      final p = (seed + time * speed) % 1.0;
+      final distance = (1 - p) * radius;
 
       final direction = Offset(
         math.cos(angle),
         math.sin(angle),
       );
 
-      final head =
-          center + direction * distance;
+      final head = center + direction * distance;
 
       final tail = center +
-          direction *
-              (distance + 8 + 60 * (1 - p));
+          direction * (distance + 8 + 60 * (1 - p));
 
-      final opacity =
-          (math.sin(p * math.pi) * .42)
-              .clamp(0.0, 1.0)
-              .toDouble();
+      final opacity = (math.sin(p * math.pi) * .42)
+          .clamp(0.0, 1.0)
+          .toDouble();
 
       final paint = Paint()
-        ..strokeWidth =
-            .5 + random.nextDouble() * 1.6
+        ..strokeWidth = .5 + random.nextDouble() * 1.6
         ..strokeCap = StrokeCap.round
-        ..color = _gold.withValues(
-          alpha: opacity,
-        );
+        ..color = _gold.withValues(alpha: opacity);
 
       canvas.drawLine(head, tail, paint);
     }
@@ -491,9 +506,8 @@ class _CinemaLight extends CustomPainter {
             .clamp(0.0, 1.0)
             .toDouble();
 
-    for (int i = 0; i < 3; i++) {
-      final orbit =
-          size.shortestSide * (.30 + i * .09);
+    for (int i = 0; i < (lowPower ? 1 : 3); i++) {
+      final orbit = size.shortestSide * (.30 + i * .09);
 
       final oval = Rect.fromCenter(
         center: center,
@@ -503,9 +517,7 @@ class _CinemaLight extends CustomPainter {
 
       canvas.save();
       canvas.translate(center.dx, center.dy);
-      canvas.rotate(
-        time * .12 + i * math.pi / 3,
-      );
+      canvas.rotate(time * .12 + i * math.pi / 3);
       canvas.translate(-center.dx, -center.dy);
 
       canvas.drawArc(
@@ -516,16 +528,13 @@ class _CinemaLight extends CustomPainter {
         Paint()
           ..style = PaintingStyle.stroke
           ..strokeWidth = 1.2
-          ..color = _gold.withValues(
-            alpha: orbitOpacity,
-          ),
+          ..color = _gold.withValues(alpha: orbitOpacity),
       );
 
       canvas.restore();
     }
 
-    final lineAlpha =
-        (impact * .55).toDouble();
+    final lineAlpha = (impact * .55).toDouble();
 
     canvas.drawRect(
       Rect.fromCenter(
@@ -548,6 +557,7 @@ class _CinemaLight extends CustomPainter {
   bool shouldRepaint(
     covariant _CinemaLight oldDelegate,
   ) {
-    return oldDelegate.time != time;
+    return oldDelegate.time != time ||
+        oldDelegate.lowPower != lowPower;
   }
 }
