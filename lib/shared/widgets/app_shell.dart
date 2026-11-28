@@ -373,8 +373,11 @@ class _SideRail extends ConsumerStatefulWidget {
 }
 
 class _SideRailState extends ConsumerState<_SideRail> {
-  final FocusNode _selectedFocus =
-      FocusNode(debugLabel: 'rail-selected');
+  late final List<FocusNode> _railFocusNodes =
+      List.generate(
+        widget.items.length,
+        (i) => FocusNode(debugLabel: 'rail-$i'),
+      );
 
   @override
   void initState() {
@@ -389,8 +392,8 @@ class _SideRailState extends ConsumerState<_SideRail> {
     WidgetsBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
 
-      if (_selectedFocus.context != null) {
-        _selectedFocus.requestFocus();
+      if (_railFocusNodes[widget.currentIndex].context != null) {
+        _railFocusNodes[widget.currentIndex].requestFocus();
       } else if (attempt < 15) {
         _grabInitialFocus(attempt + 1);
       }
@@ -399,7 +402,9 @@ class _SideRailState extends ConsumerState<_SideRail> {
 
   @override
   void dispose() {
-    _selectedFocus.dispose();
+    for (final node in _railFocusNodes) {
+      node.dispose();
+    }
     super.dispose();
   }
 
@@ -454,9 +459,7 @@ class _SideRailState extends ConsumerState<_SideRail> {
                       _RailEntry(
                         item: items[i],
                         selected: i == currentIndex,
-                        focusNode: i == currentIndex
-                            ? _selectedFocus
-                            : null,
+                        focusNode: _railFocusNodes[i],
                         onTap: () => onTap(i),
                       ),
                       if (AppShell._dividersAfter
@@ -517,6 +520,7 @@ class _SideRailState extends ConsumerState<_SideRail> {
               _RailEntry(
                 item: items[i],
                 selected: i == currentIndex,
+                focusNode: _railFocusNodes[i],
                 onTap: () => onTap(i),
               ),
             const SizedBox(height: 12),
